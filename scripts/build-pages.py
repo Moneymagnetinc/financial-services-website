@@ -35,12 +35,16 @@ ARTICLE_TPL = (SRC / 'templates' / 'article.html').read_text(encoding='utf-8')
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def parse_meta_comment(fragment: str) -> dict:
-    """Extract <!-- META: key=value | ... --> from first line of fragment."""
+    """Extract <!-- META: key=value | key=value --> from first line.
+    Splits only on | followed by a known key name, so titles/descs
+    that contain | are preserved intact."""
     m = re.match(r'<!--\s*META:\s*(.*?)\s*-->', fragment.strip(), re.DOTALL)
     if not m:
         return {}
     meta = {}
-    for part in m.group(1).split('|'):
+    # Split on pipe only when immediately followed by a word + '='
+    parts = re.split(r'\s*\|\s*(?=\w+=)', m.group(1))
+    for part in parts:
         part = part.strip()
         if '=' in part:
             k, _, v = part.partition('=')
@@ -50,7 +54,7 @@ def parse_meta_comment(fragment: str) -> dict:
 
 def build_head(meta: dict, is_article: bool = False) -> str:
     title    = meta.get('title', 'Finaxis | Specialist in financiële operaties')
-    desc     = meta.get('desc', '')
+    desc     = meta.get('desc', '')[:160]   # Google truncates at 160
     canonical = meta.get('canonical', 'https://finaxis.nl/')
     og_title = meta.get('og_title', title)
     og_desc  = meta.get('og_desc', desc)
@@ -216,8 +220,9 @@ def render_article(article: dict, all_articles: list, out_path: Path) -> None:
         'September','september').replace('October','oktober').replace(
         'November','november').replace('December','december')
 
+    art_desc = article.get('meta_description', '')[:160]
     head = f'''<title>{article["title"]} | Finaxis Kennisbank</title>
-  <meta name="description" content="{article.get('meta_description','')}" />
+  <meta name="description" content="{art_desc}" />
   <link rel="canonical" href="{url}" />
   <meta property="og:url"         content="{url}" />
   <meta property="og:title"       content="{article['title']}" />
