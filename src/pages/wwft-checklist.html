@@ -37,9 +37,7 @@
   <div class="lm-form-inner">
     <h2>Download de checklist — gratis</h2>
     <p>Vul je gegevens in en ontvang de volledige WWFT Compliance Checklist 2026 direct in jouw e-mail. Geen spam, geen verplichtingen.</p>
-    <form class="lm-form" action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST">
-      <input type="hidden" name="_subject" value="WWFT Checklist download aanvraag" />
-      <input type="hidden" name="_next" value="https://finaxis.nl/bedankt/" />
+    <form class="lm-form" action="/checklist.php" method="POST">
       <div class="form-group">
         <label for="lm-name">Naam</label>
         <input type="text" id="lm-name" name="naam" placeholder="Jouw naam" required />
