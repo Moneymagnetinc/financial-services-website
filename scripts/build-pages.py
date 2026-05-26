@@ -281,6 +281,7 @@ def build_sitemap(article_slugs: list) -> str:
         ('/kennisbank/',       '0.7'),
         ('/gids/wwft-checklist/', '0.8'),
         ('/contact/',          '0.7'),
+        ('/privacy/',          '0.3'),
     ]
     article_urls = [(f'/kennisbank/{s}/', '0.7') for s in article_slugs]
     homepage_urls = [
@@ -367,6 +368,7 @@ SIMPLE_PAGES = [
     ('wwft-checklist.html', 'gids/wwft-checklist/index.html'),
     ('contact.html',   'contact/index.html'),
     ('bedankt.html',   'bedankt/index.html'),
+    ('privacy.html',   'privacy/index.html'),
 ]
 
 
@@ -434,7 +436,7 @@ def main() -> None:
              'https://finaxis.nl/over-ons/',
              'https://finaxis.nl/kennisbank/',
              'https://finaxis.nl/gids/wwft-checklist/',
-             'https://finaxis.nl/contact/'] +
+             'https://finaxis.nl/contact/', 'https://finaxis.nl/privacy/'] +
             [f'https://finaxis.nl/kennisbank/{s}/' for s in article_slugs]
         )
         print(f'\nPinging IndexNow ({len(all_urls)} URLs)...')
