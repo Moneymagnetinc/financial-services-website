@@ -51,16 +51,18 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
     body {
-      font-family: 'DM Sans', system-ui, sans-serif;
+      font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
       color: var(--body-text);
       background: var(--bg-white);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      min-width: 320px;
     }
-    h1, h2, h3, h4 { font-family: 'Inter', 'DM Sans', sans-serif; line-height: 1.15; }
+    h1, h2, h3, h4 { font-family: 'Inter', 'DM Sans', 'Segoe UI', sans-serif; line-height: 1.15; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 

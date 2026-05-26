@@ -42,9 +42,9 @@
       --border:      #D8E4F0;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--body-text); background: var(--bg-white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    h1, h2, h3, h4 { font-family: 'Inter', 'DM Sans', sans-serif; line-height: 1.15; }
+    html { scroll-behavior: smooth; overflow-x: hidden; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+    body { font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; color: var(--body-text); background: var(--bg-white); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; min-width: 320px; }
+    h1, h2, h3, h4 { font-family: 'Inter', 'DM Sans', 'Segoe UI', sans-serif; line-height: 1.15; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
     .container { max-width: 1200px; margin: 0 auto; width: 100%; }
@@ -218,16 +218,52 @@
     .related-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 0.5rem; }
     .related-card-link { font-size: 0.78rem; font-weight: 600; color: var(--blue); }
 
-    /* ── KENNISBANK INDEX ── */
-    .kb-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 960px; margin-top: 2.5rem; }
-    .kb-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 2rem; transition: border-color 0.2s, box-shadow 0.2s; }
-    .kb-card:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(27,82,153,0.09); }
-    .kb-card-cat { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); background: var(--blue-light); padding: 0.25rem 0.6rem; border-radius: 3px; display: inline-block; margin-bottom: 1rem; }
-    .kb-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 0.8rem; }
-    .kb-card p { font-size: 0.84rem; color: var(--muted-text); line-height: 1.75; margin-bottom: 1.2rem; }
-    .kb-card-meta { display: flex; justify-content: space-between; align-items: center; }
+    /* ── KENNISBANK ── */
+    .kb-hero { background: var(--navy); padding: 160px 6% 60px; position: relative; overflow: hidden; }
+    .kb-hero::after { content: ''; position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(59,143,212,0.12) 0%, transparent 70%); pointer-events: none; }
+    .kb-hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .kb-hero p { color: rgba(255,255,255,0.6); font-size: 1rem; max-width: 560px; line-height: 1.8; margin-bottom: 2rem; }
+    .kb-cat-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .kb-cat-pill { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.18); padding: 0.35rem 0.9rem; border-radius: 100px; transition: background 0.2s, color 0.2s; text-decoration: none; }
+    .kb-cat-pill:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .kb-featured { background: var(--bg-section); padding: 60px 6%; border-bottom: 1px solid var(--border); }
+    .kb-featured-wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 3fr 2fr; gap: 5rem; align-items: center; }
+    .kb-featured-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.2rem; }
+    .kb-featured-label::before { content: ''; width: 24px; height: 2px; background: var(--blue); }
+    .kb-featured-cat { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); background: var(--blue-light); padding: 0.3rem 0.75rem; border-radius: 3px; margin-bottom: 1.2rem; }
+    .kb-featured-title { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; }
+    .kb-featured-title a { color: inherit; transition: color 0.2s; }
+    .kb-featured-title a:hover { color: var(--blue); }
+    .kb-featured-excerpt { font-size: 0.93rem; color: var(--muted-text); line-height: 1.85; margin-bottom: 1.5rem; }
+    .kb-featured-meta { display: flex; gap: 0.5rem; align-items: center; font-size: 0.72rem; color: var(--muted-text); margin-bottom: 1.8rem; }
+    .meta-dot { color: var(--border); }
+    .kb-featured-visual { background: var(--navy); border-radius: 12px; height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; padding: 2rem; }
+    .kb-featured-stat { text-align: center; padding: 1rem 0; }
+    .kb-featured-stat-num { font-family: 'Inter',sans-serif; font-size: 2.4rem; font-weight: 700; color: #fff; line-height: 1; }
+    .kb-featured-stat-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 0.3rem; }
+    .kb-featured-stat-divider { width: 40px; height: 1px; background: rgba(255,255,255,0.12); margin: 0 auto; }
+    .kb-articles-section { padding: 70px 6%; background: #fff; }
+    .kb-articles-header { display: flex; justify-content: space-between; align-items: baseline; max-width: 1200px; margin: 0 auto 2rem; }
+    .kb-articles-header h2 { font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+    .kb-articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .kb-article-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.8rem; transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s; text-decoration: none; color: inherit; }
+    .kb-article-card:hover { border-color: var(--blue); box-shadow: 0 10px 40px rgba(27,82,153,0.1); transform: translateY(-4px); }
+    .kb-article-num { font-family: 'Inter',sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 1rem; }
+    .kb-article-cat { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.7rem; }
+    .kb-article-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 0.7rem; }
+    .kb-article-card p { font-size: 0.82rem; color: var(--muted-text); line-height: 1.75; flex: 1; }
+    .kb-article-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1.3rem; padding-top: 1rem; border-top: 1px solid var(--border); }
     .kb-readtime { font-size: 0.72rem; color: var(--muted-text); }
-    .kb-link { font-size: 0.8rem; font-weight: 700; color: var(--blue); }
+    .kb-arrow { color: var(--blue); font-size: 1.1rem; transition: transform 0.2s; }
+    .kb-article-card:hover .kb-arrow { transform: translateX(5px); }
+    .kb-download-cta { background: linear-gradient(135deg, var(--navy) 0%, #1a3a7a 100%); padding: 70px 6%; }
+    .kb-download-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .kb-download-inner .eyebrow { justify-content: center; }
+    .kb-download-inner .eyebrow-line { background: rgba(255,255,255,0.3); }
+    .kb-download-inner .eyebrow-text { color: rgba(255,255,255,0.55); }
+    .kb-download-inner h2 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 700; color: #fff; margin-bottom: 0.8rem; margin-top: 1rem; }
+    .kb-download-inner p { color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.75; margin-bottom: 2rem; }
+    .kb-download-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     /* ── LEAD MAGNET ── */
     .lm-hero { background: var(--navy); padding: 160px 6% 80px; }
@@ -294,11 +330,16 @@
     #exit-popup-close { background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer; font-size: 1.4rem; line-height: 1; margin-left: auto; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .kb-featured-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .kb-featured-visual { display: none; }
+      .kb-articles-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 900px) {
       .content-grid { grid-template-columns: 1fr; }
       .content-aside { position: static; }
       .related-cards { grid-template-columns: 1fr; }
-      .kb-grid { grid-template-columns: 1fr; }
+      .kb-articles-grid { grid-template-columns: 1fr 1fr; }
       .lm-hero-inner { grid-template-columns: 1fr; }
       .contact-page-grid { grid-template-columns: 1fr; }
     }
@@ -317,6 +358,11 @@
       #wa-btn span { display: none; }
       #wa-btn { padding: 0.8rem; border-radius: 50%; }
       .form-row { grid-template-columns: 1fr; }
+      .kb-articles-grid { grid-template-columns: 1fr; }
+      .kb-hero { padding: 120px 5% 45px; }
+      .kb-featured { padding: 40px 5%; }
+      .kb-articles-section { padding: 45px 5%; }
+      .kb-download-cta { padding: 50px 5%; }
     }
   </style>
 </head>
