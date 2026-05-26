@@ -299,6 +299,11 @@
       transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
     .service-card:hover .sc-tag { border-color: rgba(27,82,153,0.35); color: var(--blue); background: var(--blue-light); }
+    .sc-link { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.1rem; font-size: 0.78rem; font-weight: 700; color: var(--blue); letter-spacing: 0.03em; transition: gap 0.2s; }
+    .sc-link:hover { gap: 0.55rem; }
+    .nav-phone { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 600; color: var(--muted-text); transition: color 0.2s; white-space: nowrap; }
+    .nav-phone:hover { color: var(--navy); }
+    @media (max-width: 900px) { .nav-phone { display: none; } }
 
     /* ── EXPERIENCE ── */
     #experience { background: #fff; padding: 100px 6%; }
@@ -549,9 +554,14 @@
         <li><a href="#experience" data-i18n="nav_experience">Experience</a></li>
         <li><a href="#solutions" data-i18n="nav_solutions">Solutions</a></li>
         <li><a href="#why" data-i18n="nav_why">Why Us</a></li>
+        <li><a href="/kennisbank/" data-i18n="nav_kennisbank">Kennisbank</a></li>
         <li><a href="#contact" class="nav-cta" data-i18n="nav_cta">Get in Touch</a></li>
       </ul>
       <div style="display:flex;align-items:center;gap:1rem;">
+        <a href="tel:+31625009505" class="nav-phone">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.1 6.1l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          06 25 00 95 05
+        </a>
         <div class="lang-toggle">
           <button class="lang-btn" id="btnEN" onclick="setLang('en')"><span class="flag">🇬🇧</span> EN</button>
           <button class="lang-btn active" id="btnNL" onclick="setLang('nl')"><span class="flag">🇳🇱</span> NL</button>
@@ -750,6 +760,7 @@
             <div class="sc-tags">
               <span class="sc-tag" data-i18n="tag1_1">Risicobeoordeling</span><span class="sc-tag" data-i18n="tag1_2">Kredietanalyse</span><span class="sc-tag" data-i18n="tag1_3">Polisbeheer</span><span class="sc-tag" data-i18n="tag1_4">Besluitvorming</span><span class="sc-tag" data-i18n="tag1_5">Portefeuillebeheer</span>
             </div>
+            <a href="/acceptatie/" class="sc-link" data-i18n="svc1_link">Meer over acceptatie →</a>
           </div>
         </div>
         <div class="service-card">
@@ -764,6 +775,7 @@
             <div class="sc-tags">
               <span class="sc-tag" data-i18n="tag2_1">Facturering</span><span class="sc-tag" data-i18n="tag2_2">Debiteurenbeheer</span><span class="sc-tag" data-i18n="tag2_3">Reconciliatie</span><span class="sc-tag" data-i18n="tag2_4">Geschillenbehandeling</span><span class="sc-tag" data-i18n="tag2_5">Rapportage</span>
             </div>
+            <a href="/debiteurenbeheer/" class="sc-link" data-i18n="svc2_link">Meer over debiteurenbeheer →</a>
           </div>
         </div>
         <div class="service-card">
@@ -778,6 +790,7 @@
             <div class="sc-tags">
               <span class="sc-tag" data-i18n="tag3_1">KYC-onboarding</span><span class="sc-tag" data-i18n="tag3_2">AML-screening</span><span class="sc-tag" data-i18n="tag3_3">EDD</span><span class="sc-tag" data-i18n="tag3_4">PEP/Sancties</span><span class="sc-tag" data-i18n="tag3_5">Monitoring</span>
             </div>
+            <a href="/cdd-kyc/" class="sc-link" data-i18n="svc3_link">Meer over CDD/KYC →</a>
           </div>
         </div>
       </div>
@@ -970,17 +983,18 @@
               <a href="#services" style="font-size:0.82rem;color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_services">Diensten</a>
               <a href="#experience" style="font-size:0.82rem;color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_exp">Ervaring</a>
               <a href="#why" style="font-size:0.82rem;color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_why">Waarom wij</a>
-              <a href="#contact" style="font-size:0.82rem;color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_contact">Contact</a>
+              <a href="/kennisbank/" style="font-size:0.82rem;color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_kennisbank">Kennisbank</a>
+              <a href="/contact/" style="font-size:0.82rem;color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_contact">Contact</a>
             </nav>
           </div>
           <div>
             <div style="font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;" data-i18n="ft_svc_h">Diensten</div>
             <nav style="display:flex;flex-direction:column;gap:0.6rem;">
-              <a href="#services" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc1">Acceptatie</a>
-              <a href="#services" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc2">Debiteurenadministratie</a>
-              <a href="#services" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc3">CDD / KYC-compliance</a>
-              <a href="#solutions" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc4">Volledige uitbesteding</a>
-              <a href="#solutions" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc5">Freelance / Contract</a>
+              <a href="/acceptatie/" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc1">Acceptatie</a>
+              <a href="/debiteurenbeheer/" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc2">Debiteurenadministratie</a>
+              <a href="/cdd-kyc/" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc3">CDD / KYC-compliance</a>
+              <a href="/freelance/" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc4">Volledige uitbesteding</a>
+              <a href="/freelance/" style="font-size:0.82rem;color:rgba(255,255,255,0.55);" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-i18n="ft_svc5">Freelance / Contract</a>
             </nav>
           </div>
           <div>
@@ -1087,7 +1101,7 @@
     var translations = {
       en: {
         nav_about: 'About', nav_services: 'Services', nav_experience: 'Experience',
-        nav_solutions: 'Deployment Models', nav_why: 'Why Finaxis', nav_cta: 'Request a Briefing',
+        nav_solutions: 'Deployment Models', nav_why: 'Why Finaxis', nav_kennisbank: 'Knowledge Base', nav_cta: 'Request a Briefing',
         hero_kicker: 'Specialist financial operations infrastructure · Netherlands-based · EU-deployed',
         hero_h1: 'Financial operations built for scale —<br><em>delivered without the overhead.</em>',
         hero_sub: 'Finaxis provides enterprise-grade underwriting execution, accounts receivable management, and CDD/KYC compliance operations — on a fully managed or embedded specialist basis. For finance leaders who require institutional capability, regulatory alignment, and operational continuity without the fixed cost structure of a captive function.',
@@ -1106,6 +1120,7 @@
         svc1_title: 'Underwriting', svc1_body: 'Full-cycle underwriting execution — risk assessment, credit file analysis, policy review, decision documentation, and portfolio monitoring. Your credit decisions are supported by structured analytical processes and documented audit trails, ready for regulatory review at any point.',
         svc2_title: 'Accounts receivable', svc2_body: 'End-to-end receivables management covering invoicing, structured collections, account reconciliation, and dispute resolution. Designed to reduce Days Sales Outstanding, improve working capital predictability, and maintain debtor relationships without escalation friction. Full reporting on portfolio ageing, collection rates, and exception handling at agreed intervals.',
         svc3_title: 'CDD / KYC compliance', svc3_body: 'Structured Customer Due Diligence and KYC programme management — from initial onboarding through periodic review to ongoing monitoring. Built to WWFT (the Dutch AML Act) and EU AML Directive standards, with full GDPR data handling protocols. We produce defensible documentation at every stage, designed to satisfy internal audit, external regulators, and supervisory authority review.',
+        svc1_link: 'More on underwriting →', svc2_link: 'More on accounts receivable →', svc3_link: 'More on CDD/KYC →',
         exp_eyebrow: 'Our experience', exp_h2: 'Where we have operated',
         exp_intro: 'Our team has operated inside some of Europe\'s most complex financial organisations — across automotive finance, fleet leasing, insurance, and fintech. We know these environments from the inside.',
         sol1_title: 'Full function ownership. Finaxis operates it.',
@@ -1162,7 +1177,7 @@
         cr1:'Financial Operations · Underwriting',cr2:'AR · CDD/KYC · Compliance',cr3:'Underwriting · Portfolio Management',cr5:'Underwriting · Credit Analysis',cr6:'Accounts Receivable · Collections',cr7:'Underwriting · Financial Operations',cr8:'Financial Operations · CDD/KYC',cr9:'Accounts Receivable · Underwriting',
         ind1:'Automotive Finance',ind2:'Fleet Leasing',ind3:'Insurance',ind4:'Fintech',
         ft_nav_h:'Navigation',ft_svc_h:'Services',ft_con_h:'Contact',
-        ft_about:'About',ft_services:'Services',ft_exp:'Experience',ft_why:'Why Finaxis',ft_contact:'Contact',
+        ft_about:'About',ft_services:'Services',ft_exp:'Experience',ft_why:'Why Finaxis',ft_kennisbank:'Knowledge Base',ft_contact:'Contact',
         ft_svc1:'Underwriting',ft_svc2:'Accounts Receivable',ft_svc3:'CDD / KYC Compliance',ft_svc4:'Managed Service',ft_svc5:'Embedded Specialist',
         ft_loc:'Netherlands · Worldwide',
         ft_copy:'© 2026 Finaxis Financial Services · Netherlands · All rights reserved.',
@@ -1171,7 +1186,7 @@
       },
       nl: {
         nav_about: 'Over ons', nav_services: 'Diensten', nav_experience: 'Ervaring',
-        nav_solutions: 'Inzetmodellen', nav_why: 'Waarom Finaxis', nav_cta: 'Gesprek aanvragen',
+        nav_solutions: 'Inzetmodellen', nav_why: 'Waarom Finaxis', nav_kennisbank: 'Kennisbank', nav_cta: 'Gesprek aanvragen',
         hero_kicker: 'Financiële operaties op institutioneel niveau · Gevestigd in Nederland · EU-breed inzetbaar',
         hero_h1: 'Financiële operaties op schaal —<br>zonder de vaste <em>overheadkosten.</em>',
         hero_sub: 'Finaxis levert financiële operaties op institutioneel niveau — volledig beheerd of als ingebedde specialist. Voor CFO\'s en financedirecteurs die institutionele kwaliteit, regulatoire conformiteit en operationele continuïteit nodig hebben, zonder de vaste kostenstructuur van een eigen afdeling.',
@@ -1190,6 +1205,7 @@
         svc1_title: 'Acceptatie', svc1_body: 'Volledige acceptatieverwerking — risicoanalyse, kredietdossier, beleidsbeoordeling, besluitdocumentatie en portefeuillebeheer. Jouw kredietbeslissingen worden ondersteund door gestructureerde analytische processen en gedocumenteerde auditsporen, beschikbaar voor regulatoire toetsing op elk moment.',
         svc2_title: 'Debiteurenadministratie', svc2_body: 'Volledig debiteurenbeheer van begin tot eind — facturering, gestructureerde incasso, rekeningafstemming en geschillenbehandeling. Ontworpen om de debiteurentermijn (DSO) te verlagen, de voorspelbaarheid van de kasstroom te verbeteren en debiteurrelaties te onderhouden zonder onnodige escalatie. Volledige rapportage over ouderdomsanalyse, incassopercentages en uitzonderingsbeheer op afgesproken intervallen.',
         svc3_title: 'CDD / KYC-compliance', svc3_body: 'Gestructureerd klantonderzoeksprogramma — van initiële onboarding tot periodieke hertoetsing en doorlopende monitoring. Opgebouwd conform WWFT en EU-AML-richtlijnen, met volledige AVG-dataverwerkingsprotocollen. Verdedigbare documentatie bij elke processtap — ontworpen voor interne audit, externe toezichthouders en DNB/AFM-beoordeling.',
+        svc1_link: 'Meer over acceptatie →', svc2_link: 'Meer over debiteurenbeheer →', svc3_link: 'Meer over CDD/KYC →',
         exp_eyebrow: 'Onze ervaring', exp_h2: 'Organisaties waar wij actief zijn geweest',
         exp_intro: 'Ons team heeft geopereerd bij de meest complexe financiële instellingen van Europa — in automotive finance, leasing, verzekeringen en fintech. Wij kennen deze omgevingen van binnenuit.',
         sol1_title: 'Volledige functie-eigenaarschap. Finaxis voert het uit.',
@@ -1246,7 +1262,7 @@
         cr1:'Financiële Operaties · Acceptatie',cr2:'DA · CDD/KYC · Compliance',cr3:'Acceptatie · Portefeuillebeheer',cr5:'Acceptatie · Kredietanalyse',cr6:'Debiteurenadministratie · Incasso',cr7:'Acceptatie · Financiële Operaties',cr8:'Financiële Operaties · CDD/KYC',cr9:'Debiteurenadministratie · Acceptatie',
         ind1:'Automotive Finance',ind2:'Wagenparkverhuur',ind3:'Verzekeringen',ind4:'Fintech',
         ft_nav_h:'Navigatie',ft_svc_h:'Diensten',ft_con_h:'Contact',
-        ft_about:'Over ons',ft_services:'Diensten',ft_exp:'Ervaring',ft_why:'Waarom wij',ft_contact:'Contact',
+        ft_about:'Over ons',ft_services:'Diensten',ft_exp:'Ervaring',ft_why:'Waarom wij',ft_kennisbank:'Kennisbank',ft_contact:'Contact',
         ft_svc1:'Acceptatie',ft_svc2:'Debiteurenadministratie',ft_svc3:'CDD / KYC-compliance',ft_svc4:'Beheerde dienst',ft_svc5:'Freelance / Contract',
         ft_loc:'Nederland · Wereldwijd',
         ft_copy:'© 2026 Finaxis Financial Services · Nederland · Alle rechten voorbehouden.',
