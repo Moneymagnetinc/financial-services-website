@@ -282,6 +282,9 @@ def build_sitemap(article_slugs: list) -> str:
         ('/gids/wwft-checklist/', '0.8'),
         ('/contact/',          '0.7'),
         ('/privacy/',          '0.3'),
+        ('/vergelijken/',       '0.8'),
+        ('/kennisbank/kredietacceptatie-uitbesteden/', '0.7'),
+        ('/kennisbank/cdd-uitbesteden/', '0.7'),
     ]
     article_urls = [(f'/kennisbank/{s}/', '0.7') for s in article_slugs]
     homepage_urls = [
@@ -369,6 +372,9 @@ SIMPLE_PAGES = [
     ('contact.html',   'contact/index.html'),
     ('bedankt.html',   'bedankt/index.html'),
     ('privacy.html',   'privacy/index.html'),
+    ('vergelijken.html', 'vergelijken/index.html'),
+    ('kennisbank-kredietacceptatie.html', 'kennisbank/kredietacceptatie-uitbesteden/index.html'),
+    ('kennisbank-cdd-uitbesteden.html', 'kennisbank/cdd-uitbesteden/index.html'),
 ]
 
 
@@ -436,7 +442,7 @@ def main() -> None:
              'https://finaxis.nl/over-ons/',
              'https://finaxis.nl/kennisbank/',
              'https://finaxis.nl/gids/wwft-checklist/',
-             'https://finaxis.nl/contact/', 'https://finaxis.nl/privacy/'] +
+             'https://finaxis.nl/contact/', 'https://finaxis.nl/privacy/', 'https://finaxis.nl/vergelijken/', 'https://finaxis.nl/kennisbank/kredietacceptatie-uitbesteden/', 'https://finaxis.nl/kennisbank/cdd-uitbesteden/'] +
             [f'https://finaxis.nl/kennisbank/{s}/' for s in article_slugs]
         )
         print(f'\nPinging IndexNow ({len(all_urls)} URLs)...')
