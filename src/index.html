@@ -531,7 +531,25 @@
       .hero-watermark { display: none; }
     }
 
-    @media (max-width: 400px) {
+    /* ── KENNISBANK PREVIEW ── */
+    #kennisbank-preview { background: var(--bg-section); padding: 100px 6%; border-top: 1px solid var(--border); }
+    .kb-preview-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1.5rem; }
+    .kb-preview-top h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 700; color: var(--navy); }
+    .kb-preview-top p { font-size: 0.9rem; color: var(--muted-text); max-width: 340px; line-height: 1.75; }
+    .kb-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2.2rem; }
+    .kb-preview-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1.6rem; transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+    .kb-preview-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(27,82,153,0.09); transform: translateY(-3px); }
+    .kb-preview-cat { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.65rem; }
+    .kb-preview-card h3 { font-size: 0.92rem; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 0.6rem; flex: 1; }
+    .kb-preview-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 0.85rem; border-top: 1px solid var(--border); font-size: 0.7rem; color: var(--muted-text); }
+    .kb-preview-arrow { color: var(--blue); font-weight: 700; transition: transform 0.2s; }
+    .kb-preview-card:hover .kb-preview-arrow { transform: translateX(4px); }
+    .kb-preview-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--blue); letter-spacing: 0.04em; text-transform: uppercase; border-bottom: 2px solid var(--blue); padding-bottom: 0.15rem; transition: color 0.2s; }
+    .kb-preview-link:hover { color: var(--blue-hover); }
+    @media (max-width: 900px) { .kb-preview-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 680px) { #kennisbank-preview { padding: 60px 5%; } .kb-preview-grid { grid-template-columns: 1fr; } }
+
+        @media (max-width: 400px) {
       #hero h1 { font-size: 1.6rem; }
       .badge-row { grid-template-columns: 1fr; }
       .trust-badge { border-right: none; }
@@ -905,6 +923,46 @@
     </div>
   </section>
 
+  <!-- KENNISBANK PREVIEW -->
+  <section id="kennisbank-preview">
+    <div class="container">
+      <div class="kb-preview-top">
+        <div>
+          <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text" data-i18n="kb_eyebrow">Kennisbank</div></div>
+          <h2 data-i18n="kb_h2">Praktische inzichten voor financiële professionals</h2>
+        </div>
+        <p data-i18n="kb_intro">Artikelen over WWFT-compliance, debiteurenbeheer en KYC — geschreven vanuit directe praktijkervaring bij Europese financiële instellingen.</p>
+      </div>
+      <div class="kb-preview-grid">
+        <a href="/kennisbank/wwft-2026/" class="kb-preview-card">
+          <div class="kb-preview-cat">WWFT / AML</div>
+          <h3>WWFT-verplichtingen in 2026: wat verandert er voor financiële instellingen?</h3>
+          <div class="kb-preview-footer">
+            <span>6 min leestijd</span>
+            <span class="kb-preview-arrow">&#8594;</span>
+          </div>
+        </a>
+        <a href="/kennisbank/dso-verlagen/" class="kb-preview-card">
+          <div class="kb-preview-cat">Debiteurenbeheer</div>
+          <h3>DSO verlagen in 5 stappen: de aanpak van een debiteurenadministratie specialist</h3>
+          <div class="kb-preview-footer">
+            <span>5 min leestijd</span>
+            <span class="kb-preview-arrow">&#8594;</span>
+          </div>
+        </a>
+        <a href="/kennisbank/kyc-onboarding/" class="kb-preview-card">
+          <div class="kb-preview-cat">KYC / CDD</div>
+          <h3>KYC-onboarding optimaliseren: hoe vermijd je de meest gemaakte fouten?</h3>
+          <div class="kb-preview-footer">
+            <span>7 min leestijd</span>
+            <span class="kb-preview-arrow">&#8594;</span>
+          </div>
+        </a>
+      </div>
+      <a href="/kennisbank/" class="kb-preview-link" data-i18n="kb_all">Bekijk alle artikelen</a>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
@@ -1104,6 +1162,7 @@
       en: {
         nav_about: 'About', nav_services: 'Services', nav_experience: 'Experience',
         nav_solutions: 'Deployment Models', nav_why: 'Why Finaxis', nav_kennisbank: 'Knowledge Base', nav_cta: 'Request a Briefing',
+        kb_eyebrow: 'Knowledge Base', kb_h2: 'Practical insights for financial professionals', kb_intro: 'Articles on WWFT compliance, accounts receivable and KYC — written from direct experience inside European financial institutions.', kb_all: 'View all articles',
         hero_kicker: 'Specialist financial operations infrastructure · Netherlands-based · EU-deployed',
         hero_h1: 'Financial operations built for scale —<br><em>delivered without the overhead.</em>',
         hero_sub: 'Finaxis provides enterprise-grade underwriting execution, accounts receivable management, and CDD/KYC compliance operations — on a fully managed or embedded specialist basis. For finance leaders who require institutional capability, regulatory alignment, and operational continuity without the fixed cost structure of a captive function.',
@@ -1189,6 +1248,7 @@
       nl: {
         nav_about: 'Over ons', nav_services: 'Diensten', nav_experience: 'Ervaring',
         nav_solutions: 'Inzetmodellen', nav_why: 'Waarom Finaxis', nav_kennisbank: 'Kennisbank', nav_cta: 'Gesprek aanvragen',
+        kb_eyebrow: 'Kennisbank', kb_h2: 'Praktische inzichten voor financiële professionals', kb_intro: 'Artikelen over WWFT-compliance, debiteurenbeheer en KYC — geschreven vanuit directe praktijkervaring bij Europese financiële instellingen.', kb_all: 'Bekijk alle artikelen',
         hero_kicker: 'Financiële operaties op institutioneel niveau · Gevestigd in Nederland · EU-breed inzetbaar',
         hero_h1: 'Financiële operaties op schaal —<br>zonder de vaste <em>overheadkosten.</em>',
         hero_sub: 'Finaxis levert financiële operaties op institutioneel niveau — volledig beheerd of als ingebedde specialist. Voor CFO\'s en financedirecteurs die institutionele kwaliteit, regulatoire conformiteit en operationele continuïteit nodig hebben, zonder de vaste kostenstructuur van een eigen afdeling.',

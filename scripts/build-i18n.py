@@ -302,6 +302,23 @@ def build_jsonld(lang: str, faqs: list) -> str:
                 'inLanguage': ['nl-NL', 'en-GB']
             },
             {
+                '@type': 'LocalBusiness',
+                '@id': 'https://finaxis.nl/#local',
+                'name': 'Finaxis',
+                'image': 'https://finaxis.nl/logo-icon.png',
+                'address': {
+                    '@type': 'PostalAddress',
+                    'addressCountry': 'NL',
+                    'addressRegion': 'Nederland'
+                },
+                'telephone': '+31625009505',
+                'email': 'info@finaxis.nl',
+                'url': 'https://finaxis.nl/',
+                'priceRange': '€€',
+                'openingHours': 'Mo-Fr 09:00-18:00',
+                'sameAs': ['https://www.linkedin.com/company/118834398/']
+            },
+            {
                 '@type': 'FAQPage',
                 '@id': f'https://finaxis.nl/{url_path}#faq',
                 'mainEntity': [
@@ -329,7 +346,7 @@ def build_head(lang: str) -> str:
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{"Finaxis | Outsourcing voor Acceptatie, Debiteurenbeheer en CDD/KYC | Nederland" if nl else "Finaxis | Outsourced Underwriting, Accounts Receivable &amp; CDD/KYC | Netherlands"}</title>
-  <meta name="description" content="{"Specialistteam voor acceptatie, debiteurenadministratie en CDD/KYC-compliance. Bewezen trackrecord bij Stellantis, Generali, Ayvens, ALD en LeasePlan. Gevestigd in Nederland, EU-breed inzetbaar." if nl else "Specialist financial operations team for underwriting, accounts receivable, and CDD/KYC compliance. Proven track record with Stellantis, Generali, Ayvens, ALD and LeasePlan. Netherlands-based, EU-deployed."}" />
+  <meta name="description" content="{"Specialistteam voor acceptatie, debiteurenbeheer en CDD/KYC. Bewezen trackrecord bij Stellantis, Generali en Ayvens. Operationeel binnen 5 werkdagen." if nl else "Specialist financial operations for underwriting, AR and CDD/KYC. Proven track record with Stellantis, Generali and Ayvens. Netherlands-based, EU-deployed."}" />
   <meta name="keywords" content="{"acceptatie outsourcing Nederland, debiteurenbeheer specialist, CDD KYC compliance outsourcing, financiële operaties outsourcing, AML compliance specialist, freelance underwriter Nederland, KYC onboarding specialist" if nl else "underwriting outsourcing Netherlands, accounts receivable specialist, CDD KYC compliance outsourcing, financial operations outsourcing, AML compliance specialist, freelance underwriter Netherlands"}" />
   <meta name="author" content="Finaxis" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
