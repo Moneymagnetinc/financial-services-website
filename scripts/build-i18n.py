@@ -350,7 +350,7 @@ def build_head(lang: str) -> str:
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{"Finaxis | Outsourcing voor Acceptatie, Debiteurenbeheer en CDD/KYC | Nederland" if nl else "Finaxis | Outsourced Underwriting, Accounts Receivable &amp; CDD/KYC | Netherlands"}</title>
+  <title>{"Finaxis | Acceptatie, Debiteurenbeheer &amp; CDD/KYC outsourcing | Amsterdam" if nl else "Finaxis | Outsourced Underwriting, Accounts Receivable &amp; CDD/KYC | Amsterdam"}</title>
   <meta name="description" content="{"Specialistteam voor acceptatie, debiteurenbeheer en CDD/KYC. Bewezen trackrecord bij Stellantis, Generali en Ayvens. Operationeel binnen 5 werkdagen." if nl else "Specialist financial operations for underwriting, AR and CDD/KYC. Proven track record with Stellantis, Generali and Ayvens. Amsterdam-based; serving clients across the EU, United States and UAE."}" />
   <meta name="keywords" content="{"acceptatie outsourcing Nederland, debiteurenbeheer specialist, CDD KYC compliance outsourcing, financiële operaties outsourcing, AML compliance specialist, freelance underwriter Nederland, KYC onboarding specialist" if nl else "underwriting outsourcing Netherlands, accounts receivable specialist, CDD KYC compliance outsourcing, financial operations outsourcing, AML compliance specialist, freelance underwriter Netherlands"}" />
   <meta name="author" content="Finaxis" />

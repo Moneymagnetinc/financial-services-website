@@ -156,8 +156,12 @@
     /* ── HERO ── */
     #hero {
       background: var(--bg-section);
-      min-height: 100vh; display: flex; align-items: center;
+      min-height: 100vh; min-height: 100svh; display: flex; align-items: center;
       padding: 165px 6% 90px; position: relative; overflow: hidden;
+    }
+    /* Short viewports (typical Windows laptops / high display scaling): don't force a full-height hero */
+    @media (max-height: 820px) {
+      #hero { min-height: auto; padding-top: 120px; padding-bottom: 60px; }
     }
     .hero-inner {
       max-width: 1200px; margin: 0 auto; width: 100%;
@@ -1104,7 +1108,7 @@
     "description": "B2B specialist team in underwriting, accounts receivable management, and CDD/KYC compliance.",
     "url": "https://finaxis.nl",
     "email": "info@finaxis.nl",
-    "address": { "@type": "PostalAddress", "addressCountry": "NL", "addressRegion": "Netherlands" },
+    "address": { "@type": "PostalAddress", "addressCountry": "NL", "addressLocality": "Amsterdam", "addressRegion": "Noord-Holland" },
     "areaServed": { "@type": "Place", "name": "Worldwide" },
     "knowsAbout": ["Underwriting", "Accounts Receivable", "CDD", "KYC", "AML", "WWFT", "GDPR"],
     "sameAs": "https://www.linkedin.com/company/118834398/"
@@ -1196,7 +1200,7 @@
         proc_eyebrow: 'Engagement structure', proc_h2: 'A defined path from assessment to operational delivery.',
         proc1_title: 'Operational assessment', proc1_body: 'We conduct a structured review of your requirements: functions to be covered, existing workflows, regulatory obligations, and stakeholder dependencies. This shapes the engagement architecture.',
         proc2_title: 'Engagement proposal', proc2_body: 'You receive a fully documented proposal: service scope, operational model, SLA framework, commercial terms, and implementation timeline. No ambiguity at any stage.',
-        proc3_title: 'Integration and activation', proc3_body: 'We align to your systems, establish data access protocols, document operating procedures, and activate the function — typically within five to seven business days.',
+        proc3_title: 'Integration and activation', proc3_body: 'We align to your systems, establish data access protocols, document operating procedures, and activate the function — typically within five business days.',
         proc4_title: 'Ongoing execution and governance', proc4_body: 'Finaxis executes to agreed parameters and delivers structured reporting at defined intervals: portfolio performance, exception flags, regulatory status, and operational health metrics.',
         contact_eyebrow: 'Contact', contact_h2: 'Request a confidential briefing',
         contact_intro: 'Contact us to discuss your financial operations requirements. We will assess your situation and outline how Finaxis can support your function — with full transparency on scope, timeline, and commercial terms. We respond within one business day. All enquiries are handled under strict confidentiality, with NDA available upon request.',
@@ -1222,7 +1226,7 @@
         w5h: 'Direct access to senior specialists. No account-management layer.', w5p: 'You work directly with the specialists executing the function. Decision-making is immediate. Accountability is clear.',
         w6h: 'Institutional-grade data governance', w6p: 'All engagements are governed by NDA and GDPR Article 28-aligned Data Processing Agreements. Client data is handled under institutional standards and never retained beyond engagement scope.',
         s1l1: 'Full operational accountability from day one', s1l2: 'Execution, quality controls, and exception management included', s1l3: 'Structured reporting at agreed intervals', s1l4: 'Delivered to documented SLAs', s1l5: 'Audit-ready output as standard',
-        s2l1: 'Specialists deployed within your existing structure', s2l2: 'Aligned to your workflows, systems, and reporting framework', s2l3: 'Operational within five to seven business days', s2l4: 'Suitable for regulatory events, capacity peaks, and defined projects', s2l5: 'No long-term contractual commitment required',
+        s2l1: 'Specialists deployed within your existing structure', s2l2: 'Aligned to your workflows, systems, and reporting framework', s2l3: 'Operational within five business days', s2l4: 'Suitable for regulatory events, capacity peaks, and defined projects', s2l5: 'No long-term contractual commitment required',
         sol_btn: 'Discuss an Engagement',
         cl_loc: 'Location', cv_loc: 'Netherlands · Available globally',
         cl_tel: 'Phone', cv_wa: 'Send us a message', li_btn: 'View LinkedIn profile',
@@ -1283,7 +1287,7 @@
         proc_eyebrow: 'Opdrachtstructuur', proc_h2: 'Een gestructureerd traject van beoordeling tot operationele uitvoering.',
         proc1_title: 'Operationele beoordeling', proc1_body: 'Wij voeren een gestructureerde analyse uit van jouw vereisten: te dekken functies, bestaande werkprocessen, regulatoire verplichtingen en stakeholderafhankelijkheden. Dit vormt de basis voor de structuur van de opdracht.',
         proc2_title: 'Voorstel op maat', proc2_body: 'Je ontvangt een volledig gedocumenteerd voorstel: dienstscope, operationeel model, SLA-kader, commerciële voorwaarden en implementatietijdlijn. Geen onduidelijkheden, in welke fase dan ook.',
-        proc3_title: 'Integratie en activering', proc3_body: 'Wij sluiten aan op jouw systemen, stellen gegevensverwerkingsprotocollen in, documenteren operationele procedures en activeren de functie — doorgaans binnen vijf tot zeven werkdagen.',
+        proc3_title: 'Integratie en activering', proc3_body: 'Wij sluiten aan op jouw systemen, stellen gegevensverwerkingsprotocollen in, documenteren operationele procedures en activeren de functie — doorgaans binnen vijf werkdagen.',
         proc4_title: 'Doorlopende uitvoering en toezicht', proc4_body: 'Finaxis voert uit conform afgesproken parameters en levert gestructureerde rapportages op gedefinieerde intervallen: portefeuilleprestaties, uitzonderingssignalen, regulatoire status en operationele prestatie-indicatoren.',
         contact_eyebrow: 'Contact', contact_h2: 'Vraag een vertrouwelijk gesprek aan',
         contact_intro: 'Neem contact op om jouw financieel-operationele vereisten te bespreken. Wij beoordelen jouw situatie en schetsen hoe Finaxis jouw functie kan ondersteunen — met volledige transparantie over scope, tijdlijn en commerciële voorwaarden. Wij reageren binnen één werkdag. Alle verzoeken worden behandeld onder strikte vertrouwelijkheid, NDA beschikbaar op verzoek.',
@@ -1309,7 +1313,7 @@
         w5h: 'Rechtstreekse toegang tot ervaren specialisten. Geen accountmanagementlaag.', w5p: 'Je werkt rechtstreeks met de specialisten die de functie uitvoeren. Besluitvorming is direct. Verantwoordelijkheid is helder.',
         w6h: 'Institutioneel gegevensbeheer als standaard', w6p: 'Alle opdrachten worden beheerst door een geheimhoudingsovereenkomst en AVG-artikel 28-conforme verwerkingsovereenkomsten. Klantgegevens worden behandeld conform institutionele normen en nooit bewaard buiten de opdrachtscope.',
         s1l1: 'Volledige operationele verantwoordelijkheid vanaf dag één', s1l2: 'Uitvoering, kwaliteitscontroles en uitzonderingsbeheer inbegrepen', s1l3: 'Gestructureerde rapportage op afgesproken intervallen', s1l4: 'Geleverd op gedocumenteerde dienstverleningsafspraken', s1l5: 'Auditgereed eindproduct als standaard',
-        s2l1: 'Specialisten geïntegreerd in jouw bestaande structuur', s2l2: 'Afgestemd op jouw systemen, processen en rapportagekader', s2l3: 'Operationeel binnen vijf tot zeven werkdagen', s2l4: 'Geschikt voor regulatoire trajecten, capaciteitspieken en afgebakende projecten', s2l5: 'Geen langetermijncontractuele verplichting vereist',
+        s2l1: 'Specialisten geïntegreerd in jouw bestaande structuur', s2l2: 'Afgestemd op jouw systemen, processen en rapportagekader', s2l3: 'Operationeel binnen vijf werkdagen', s2l4: 'Geschikt voor regulatoire trajecten, capaciteitspieken en afgebakende projecten', s2l5: 'Geen langetermijncontractuele verplichting vereist',
         sol_btn: 'Opdracht bespreken',
         cl_loc: 'Locatie', cv_loc: 'Nederland · EU-breed beschikbaar',
         cl_tel: 'Telefoon', cv_wa: 'Stuur ons een bericht', li_btn: 'Bekijk LinkedIn-profiel',
@@ -1380,7 +1384,7 @@
       var faqsEN = [
         { q: 'What type of organisations does Finaxis work with?', a: 'We work primarily with mid-market and enterprise organisations in automotive finance, fleet leasing, insurance, and fintech — sectors where underwriting, accounts receivable, and CDD/KYC carry significant operational and regulatory weight. We are structured for organisations that require institutional-grade execution, not general administrative support.' },
         { q: 'What is the difference between a managed service and an embedded specialist engagement?', a: 'Under a managed service, Finaxis assumes full operational responsibility for the function — we own the process, the controls, and the output. Under an embedded specialist engagement, we deploy experienced personnel directly into your structure to operate alongside your team on a defined scope or timeline. Both models are commercially flexible and do not require long-term contractual commitment.' },
-        { q: 'What is the typical time to operational readiness?', a: 'Following engagement agreement, Finaxis is typically operational within five to seven business days. This covers system access, data protocols, procedure documentation, and stakeholder alignment. For straightforward embedded engagements, activation can occur faster. We will confirm a precise timeline in the engagement proposal.' },
+        { q: 'What is the typical time to operational readiness?', a: 'Following engagement agreement, Finaxis is typically operational within five business days. This covers system access, data protocols, procedure documentation, and stakeholder alignment. For straightforward embedded engagements, activation can occur faster. We will confirm a precise timeline in the engagement proposal.' },
         { q: 'How does Finaxis handle EU and Dutch regulatory requirements?', a: 'Our CDD/KYC and compliance processes are architected to WWFT (the Dutch AML Act), EU AML Directive (2015/849 and subsequent amendments), and GDPR Article 28 standards. We do not apply generic compliance frameworks — each engagement is mapped to the applicable regulatory obligations of your specific jurisdiction and sector. Audit trail generation and defensible documentation are built into every workflow as standard.' },
         { q: 'How is Finaxis priced?', a: 'Engagements are structured on day rates, monthly retainers, or fixed-scope project fees — depending on the nature and duration of the requirement. Pricing is provided in full in the engagement proposal, with no variable charges or hidden costs. In most cases, the total cost of a Finaxis engagement is materially lower than a comparable in-house function, when accounting for recruitment, employment, training, and management overhead.' },
         { q: 'Will Finaxis require changes to our existing systems or infrastructure?', a: 'No. Finaxis operates within your existing technology environment — ERP, CRM, AR platform, KYC tooling, or any other workflow systems in use. We do not require proprietary tooling or platform migration. Onboarding is designed to be non-disruptive to your operations.' },
@@ -1391,7 +1395,7 @@
       var faqsNL = [
         { q: 'Met welk type organisaties werkt Finaxis?', a: 'Wij werken primair met midmarket en enterprise organisaties in automotive finance, leasing, verzekeringen en fintech — sectoren waar acceptatie, debiteurenbeheer en CDD/KYC significante operationele en regulatoire complexiteit dragen. Wij zijn gestructureerd voor organisaties die institutionele uitvoerkwaliteit vereisen, geen generieke administratieve ondersteuning.' },
         { q: 'Wat is het verschil tussen een beheerde dienst en een opdracht als ingebedde specialist?', a: 'Bij een beheerde dienst neemt Finaxis de volledige operationele verantwoordelijkheid voor de functie — wij bezitten het proces, de beheersmaatregelen en het eindproduct. Bij een opdracht als ingebedde specialist plaatsen wij ervaren medewerkers rechtstreeks in jouw structuur, op een afgebakende taakomschrijving of tijdlijn. Beide modellen zijn commercieel flexibel en vereisen geen langetermijncontractuele verplichting.' },
-        { q: 'Wat is de gebruikelijke doorlooptijd tot operationele gereedheid?', a: 'Na akkoord op de opdracht is Finaxis doorgaans operationeel binnen vijf tot zeven werkdagen. Dit omvat systeemtoegang, gegevensverwerkingsprotocollen, proceduredocumentatie en afstemming met betrokkenen. Voor eenvoudige integratieopdrachten kan activering sneller plaatsvinden. Wij bevestigen een exacte tijdlijn in het opdrachtvoorstel.' },
+        { q: 'Wat is de gebruikelijke doorlooptijd tot operationele gereedheid?', a: 'Na akkoord op de opdracht is Finaxis doorgaans operationeel binnen vijf werkdagen. Dit omvat systeemtoegang, gegevensverwerkingsprotocollen, proceduredocumentatie en afstemming met betrokkenen. Voor eenvoudige integratieopdrachten kan activering sneller plaatsvinden. Wij bevestigen een exacte tijdlijn in het opdrachtvoorstel.' },
         { q: 'Hoe borgt Finaxis naleving van Nederlandse en EU-regelgeving?', a: 'Ons nalevingskader is ingericht conform WWFT en de EU-AML-richtlijn als fundament, met AVG-artikel 28-gegevensverwerkingsprotocollen toegepast op alle klantgegevens. Voor klanten actief in meerdere EU-rechtsgebieden brengen wij de regulatoire verplichtingen in kaart en bouwen wij specifieke beheersmaatregelen in het operationele model. Wij passen geen generieke processen toe — elke opdracht is afgestemd op het toepasselijke regelgevingskader.' },
         { q: 'Hoe is Finaxis geprijsd?', a: 'Opdrachten zijn gestructureerd op dagtarieven, maandretainers of vaste projecttarieven — afhankelijk van de aard en duur van de vereiste. De prijsstelling wordt volledig gedocumenteerd in het opdrachtvoorstel, zonder variabele kosten of verborgen posten. In de meeste gevallen zijn de totale kosten van een Finaxis-opdracht aanzienlijk lager dan die van een vergelijkbare eigen afdeling, rekening houdend met werving, arbeidskosten, opleiding en managementkosten.' },
         { q: 'Zijn wijzigingen in onze bestaande systemen vereist?', a: 'Nee. Finaxis opereert binnen jouw bestaande technologische omgeving — ERP, CRM, debiteurenplatform, KYC-software of andere werkprocessystemen in gebruik. Wij vereisen geen eigen software of platformmigratie. De ingebruikname is ontworpen om jouw operaties niet te verstoren.' },
