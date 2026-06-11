@@ -80,12 +80,16 @@ setLang('nl'); // default on page load
 ## Build workflow
 
 ```bash
-# After any edit to src/index.html:
-python3 scripts/build-i18n.py
+# After any edit to src/index.html OR src/pages/*:
+python3 scripts/build-i18n.py    # homepage NL/EN (does NOT write sitemap)
+python3 scripts/build-pages.py   # subpages + sitemap.xml (run this AFTER build-i18n)
 
-# After deploy (to notify search engines):
-python3 scripts/build-i18n.py --ping
+# IndexNow ping (run from VPS — macOS Python fails SSL): see Deploy section
 ```
+
+> **Sitemap ownership:** `build-pages.py` is the single source of `dist/sitemap.xml`
+> (it knows every page). `build-i18n.py` deliberately no longer writes the sitemap —
+> doing so overwrote the full sitemap with a 2-URL one. Always run `build-pages.py` last.
 
 What the build script does:
 1. Extracts `translations.en` and `translations.nl` blocks using brace counting
