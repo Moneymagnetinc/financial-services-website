@@ -240,13 +240,17 @@ def build_jsonld(lang: str, faqs: list) -> str:
                 'founder': {'@id': 'https://finaxis.nl/#alexander'},
                 'areaServed': [
                     {'@type': 'Country', 'name': 'Netherlands'},
-                    {'@type': 'AdministrativeArea', 'name': 'European Union'}
+                    {'@type': 'AdministrativeArea', 'name': 'European Union'},
+                    {'@type': 'Country', 'name': 'United States'},
+                    {'@type': 'City', 'name': 'New York'},
+                    {'@type': 'Country', 'name': 'United Arab Emirates'},
+                    {'@type': 'City', 'name': 'Dubai'}
                 ],
                 'contactPoint': [{
                     '@type': 'ContactPoint',
                     'telephone': '+31-6-25009505',
                     'contactType': 'sales',
-                    'areaServed': ['NL', 'EU'],
+                    'areaServed': ['NL', 'EU', 'US', 'AE'],
                     'availableLanguage': ['nl', 'en'],
                     'email': 'info@finaxis.nl'
                 }],
@@ -309,7 +313,8 @@ def build_jsonld(lang: str, faqs: list) -> str:
                 'address': {
                     '@type': 'PostalAddress',
                     'addressCountry': 'NL',
-                    'addressRegion': 'Nederland'
+                    'addressLocality': 'Amsterdam',
+                    'addressRegion': 'Noord-Holland'
                 },
                 'telephone': '+31625009505',
                 'email': 'info@finaxis.nl',
@@ -346,14 +351,17 @@ def build_head(lang: str) -> str:
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{"Finaxis | Outsourcing voor Acceptatie, Debiteurenbeheer en CDD/KYC | Nederland" if nl else "Finaxis | Outsourced Underwriting, Accounts Receivable &amp; CDD/KYC | Netherlands"}</title>
-  <meta name="description" content="{"Specialistteam voor acceptatie, debiteurenbeheer en CDD/KYC. Bewezen trackrecord bij Stellantis, Generali en Ayvens. Operationeel binnen 5 werkdagen." if nl else "Specialist financial operations for underwriting, AR and CDD/KYC. Proven track record with Stellantis, Generali and Ayvens. Netherlands-based, EU-deployed."}" />
+  <meta name="description" content="{"Specialistteam voor acceptatie, debiteurenbeheer en CDD/KYC. Bewezen trackrecord bij Stellantis, Generali en Ayvens. Operationeel binnen 5 werkdagen." if nl else "Specialist financial operations for underwriting, AR and CDD/KYC. Proven track record with Stellantis, Generali and Ayvens. Amsterdam-based; serving clients across the EU, United States and UAE."}" />
   <meta name="keywords" content="{"acceptatie outsourcing Nederland, debiteurenbeheer specialist, CDD KYC compliance outsourcing, financiële operaties outsourcing, AML compliance specialist, freelance underwriter Nederland, KYC onboarding specialist" if nl else "underwriting outsourcing Netherlands, accounts receivable specialist, CDD KYC compliance outsourcing, financial operations outsourcing, AML compliance specialist, freelance underwriter Netherlands"}" />
   <meta name="author" content="Finaxis" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#0A2456" />
   <link rel="canonical"  href="https://finaxis.nl/{p}" />
   <link rel="alternate"  hreflang="nl"        href="https://finaxis.nl/" />
+  <link rel="alternate"  hreflang="nl-NL"     href="https://finaxis.nl/" />
   <link rel="alternate"  hreflang="en"        href="https://finaxis.nl/en/" />
+  <link rel="alternate"  hreflang="en-US"     href="https://finaxis.nl/en/" />
+  <link rel="alternate"  hreflang="en-AE"     href="https://finaxis.nl/en/" />
   <link rel="alternate"  hreflang="x-default" href="https://finaxis.nl/" />
   <link rel="manifest"   href="/site.webmanifest" />
   <link rel="icon"        type="image/png" href="/logo-icon.png" />
@@ -361,7 +369,7 @@ def build_head(lang: str) -> str:
   <meta property="og:type"             content="website" />
   <meta property="og:url"              content="https://finaxis.nl/{p}" />
   <meta property="og:title"            content="{"Finaxis | Outsourcing voor Acceptatie, Debiteurenbeheer en CDD/KYC" if nl else "Finaxis | Outsourced Underwriting, Accounts Receivable &amp; CDD/KYC"}" />
-  <meta property="og:description"      content="{"Specialist in financiële operaties. Bewezen trackrecord bij Stellantis, Generali, Ayvens, ALD en LeasePlan. Nederland · EU-breed inzetbaar." if nl else "Specialist financial operations team. Proven track record with Stellantis, Generali, Ayvens, ALD and LeasePlan. Netherlands-based, EU-deployed."}" />
+  <meta property="og:description"      content="{"Specialist in financiële operaties. Bewezen trackrecord bij Stellantis, Generali, Ayvens, ALD en LeasePlan. Nederland · EU-breed inzetbaar." if nl else "Specialist financial operations team. Proven track record with Stellantis, Generali, Ayvens, ALD and LeasePlan. Amsterdam-based; EU, US and UAE coverage."}" />
   <meta property="og:site_name"        content="Finaxis" />
   <meta property="og:locale"           content="{"nl_NL" if nl else "en_GB"}" />
   <meta property="og:locale:alternate" content="{"en_GB" if nl else "nl_NL"}" />
@@ -394,7 +402,10 @@ def build_sitemap() -> str:
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="nl"        href="https://finaxis.nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-NL"     href="https://finaxis.nl/"/>
     <xhtml:link rel="alternate" hreflang="en"        href="https://finaxis.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-US"     href="https://finaxis.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-AE"     href="https://finaxis.nl/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/"/>
   </url>
   <url>
@@ -403,7 +414,10 @@ def build_sitemap() -> str:
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="nl"        href="https://finaxis.nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-NL"     href="https://finaxis.nl/"/>
     <xhtml:link rel="alternate" hreflang="en"        href="https://finaxis.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-US"     href="https://finaxis.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-AE"     href="https://finaxis.nl/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/"/>
   </url>
 </urlset>'''
