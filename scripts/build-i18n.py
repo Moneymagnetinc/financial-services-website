@@ -271,11 +271,13 @@ def build_jsonld(lang: str, faqs: list) -> str:
                 'serviceType': [
                     'Underwriting outsourcing',
                     'Accounts receivable management',
-                    'CDD/KYC compliance'
+                    'CDD/KYC compliance',
+                    'AI process automation'
                 ],
                 'knowsAbout': [
                     'Underwriting', 'Accounts Receivable', 'CDD', 'KYC',
-                    'AML', 'WWFT', 'GDPR', 'DNB', 'Financial operations'
+                    'AML', 'WWFT', 'GDPR', 'DNB', 'Financial operations',
+                    'AI automation', 'Process automation', 'Artificial intelligence'
                 ],
                 'hasOfferCatalog': {
                     '@type': 'OfferCatalog',
@@ -286,7 +288,9 @@ def build_jsonld(lang: str, faqs: list) -> str:
                         {'@type': 'Offer', 'itemOffered': {'@type': 'Service',
                          'name': 'Debiteurenbeheer' if nl else 'Accounts Receivable'}},
                         {'@type': 'Offer', 'itemOffered': {'@type': 'Service',
-                         'name': 'CDD/KYC Compliance'}}
+                         'name': 'CDD/KYC Compliance'}},
+                        {'@type': 'Offer', 'itemOffered': {'@type': 'Service',
+                         'name': 'AI-automatisering' if nl else 'AI Automation'}}
                     ]
                 }
             },

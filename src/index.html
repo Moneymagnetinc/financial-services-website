@@ -278,7 +278,7 @@
     .services-top h2 { font-size: clamp(1.7rem, 2.8vw, 2.5rem); font-weight: 700; color: var(--navy); max-width: 380px; }
     .services-top p { font-size: 0.9rem; color: var(--muted-text); max-width: 360px; line-height: 1.75; }
 
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
     .service-card {
       background: #fff; border-radius: 8px; overflow: hidden;
       border: 1px solid var(--border);
@@ -818,6 +818,21 @@
             <a href="/cdd-kyc/" class="sc-link" data-i18n="svc3_link">Meer over CDD/KYC →</a>
           </div>
         </div>
+        <div class="service-card">
+          <div class="sc-photo">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80&auto=format&fit=crop" alt="AI-automatisering voor financiële operaties" loading="lazy" />
+            <div class="sc-photo-overlay"></div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-icon-box"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+            <h3 data-i18n="svc4_title">AI Automation</h3>
+            <p data-i18n="svc4_body">We automate the operational workflows behind underwriting, CDD/KYC and accounts receivable — applying AI to document extraction, screening, reconciliation, and case routing. Built on our domain expertise, with human review and a full audit trail retained at every control point.</p>
+            <div class="sc-tags">
+              <span class="sc-tag" data-i18n="tag4_1">Documentextractie</span><span class="sc-tag" data-i18n="tag4_2">Geautomatiseerde screening</span><span class="sc-tag" data-i18n="tag4_3">Reconciliatie</span><span class="sc-tag" data-i18n="tag4_4">Workflow-agents</span><span class="sc-tag" data-i18n="tag4_5">Human-in-the-loop</span>
+            </div>
+            <a href="#contact" class="sc-link" data-i18n="svc4_link">Bespreek AI-automatisering →</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1182,12 +1197,14 @@
         about_p1: 'Finaxis is a specialist financial operations team with embedded experience inside some of Europe\'s most operationally complex financial organisations — including Fiat Chrysler Automobiles, Generali, Ayvens, ALD Automotive, LeasePlan, and Vesting Finance. We have operated underwriting functions, managed accounts receivable portfolios, and executed CDD/KYC programmes at the institutional level.',
         about_p2: 'We work with CFOs, finance directors, and compliance leads across the Netherlands and Europe who need reliable, audit-ready financial operations without building a captive team. Whether your requirement is full function ownership or embedded specialist capacity — Finaxis operates as a structured extension of your finance organisation.',
         about_cta: 'Discuss your operational requirements →',
-        svc_eyebrow: 'Service architecture', svc_h2: 'Three disciplines. One accountable partner.',
-        svc_intro: 'Finaxis operates across the three functions that carry the highest operational risk and regulatory exposure in financial services — each delivered to institutional standards, with full accountability to your control and compliance framework.',
+        svc_eyebrow: 'Service architecture', svc_h2: 'Four disciplines. One accountable partner.',
+        svc_intro: 'Finaxis operates across the functions that carry the highest operational risk and regulatory exposure in financial services — each delivered to institutional standards, with full accountability to your control and compliance framework.',
         svc1_title: 'Underwriting', svc1_body: 'Full-cycle underwriting execution — risk assessment, credit file analysis, policy review, decision documentation, and portfolio monitoring. Your credit decisions are supported by structured analytical processes and documented audit trails, ready for regulatory review at any point.',
         svc2_title: 'Accounts receivable', svc2_body: 'End-to-end receivables management covering invoicing, structured collections, account reconciliation, and dispute resolution. Designed to reduce Days Sales Outstanding, improve working capital predictability, and maintain debtor relationships without escalation friction. Full reporting on portfolio ageing, collection rates, and exception handling at agreed intervals.',
         svc3_title: 'CDD / KYC compliance', svc3_body: 'Structured Customer Due Diligence and KYC programme management — from initial onboarding through periodic review to ongoing monitoring. Built to WWFT (the Dutch AML Act) and EU AML Directive standards, with full GDPR data handling protocols. We produce defensible documentation at every stage, designed to satisfy internal audit, external regulators, and supervisory authority review.',
         svc1_link: 'More on underwriting →', svc2_link: 'More on accounts receivable →', svc3_link: 'More on CDD/KYC →',
+        svc4_title: 'AI Automation', svc4_body: 'We automate the operational workflows behind underwriting, CDD/KYC and accounts receivable — applying AI to document extraction, screening, reconciliation, and case routing. Built on our domain expertise, with human review and a full audit trail retained at every control point.', svc4_link: 'Discuss AI automation →',
+        tag4_1: 'Document extraction', tag4_2: 'Automated screening', tag4_3: 'Reconciliation', tag4_4: 'Workflow agents', tag4_5: 'Human-in-the-loop',
         exp_eyebrow: 'Our experience', exp_h2: 'Where we have operated',
         exp_intro: 'Our team has operated inside some of Europe\'s most complex financial organisations — across automotive finance, fleet leasing, insurance, and fintech. We know these environments from the inside.',
         sol1_title: 'Full function ownership. Finaxis operates it.',
@@ -1269,12 +1286,14 @@
         about_p1: 'Finaxis is een gespecialiseerd team met directe praktijkervaring bij de meest complexe financiële instellingen van Europa — waaronder Fiat Chrysler Automobiles, Generali, Ayvens, ALD Automotive, LeasePlan en Vesting Finance. Wij hebben acceptatiefuncties geleid, debiteurenportefeuilles beheerd en CDD/KYC-programma\'s uitgevoerd op institutioneel niveau.',
         about_p2: 'Wij werken met CFO\'s, financedirecteurs en nalevingsverantwoordelijken in Nederland en Europa die betrouwbare, auditgerede financiële operaties nodig hebben zonder een eigen intern team op te bouwen. Of jouw behoefte volledige functie-eigenaarschap is of ingebedde specialistencapaciteit — Finaxis opereert als een gestructureerd verlengstuk van jouw financiële organisatie.',
         about_cta: 'Bespreek jouw operationele vereisten →',
-        svc_eyebrow: 'Dienstarchitectuur', svc_h2: 'Drie disciplines. Één verantwoordelijke partner.',
-        svc_intro: 'Finaxis opereert op de drie functies met de hoogste operationele risico\'s en regulatoire blootstelling in financiële dienstverlening — elk uitgevoerd op institutionele standaard, met volledige verantwoordelijkheid voor jouw beheersmaatregelen en nalevingskader.',
+        svc_eyebrow: 'Dienstarchitectuur', svc_h2: 'Vier disciplines. Één verantwoordelijke partner.',
+        svc_intro: 'Finaxis opereert op de functies met de hoogste operationele risico\'s en regulatoire blootstelling in financiële dienstverlening — elk uitgevoerd op institutionele standaard, met volledige verantwoordelijkheid voor jouw beheersmaatregelen en nalevingskader.',
         svc1_title: 'Acceptatie', svc1_body: 'Volledige acceptatieverwerking — risicoanalyse, kredietdossier, beleidsbeoordeling, besluitdocumentatie en portefeuillebeheer. Jouw kredietbeslissingen worden ondersteund door gestructureerde analytische processen en gedocumenteerde auditsporen, beschikbaar voor regulatoire toetsing op elk moment.',
         svc2_title: 'Debiteurenadministratie', svc2_body: 'Volledig debiteurenbeheer van begin tot eind — facturering, gestructureerde incasso, rekeningafstemming en geschillenbehandeling. Ontworpen om de debiteurentermijn (DSO) te verlagen, de voorspelbaarheid van de kasstroom te verbeteren en debiteurrelaties te onderhouden zonder onnodige escalatie. Volledige rapportage over ouderdomsanalyse, incassopercentages en uitzonderingsbeheer op afgesproken intervallen.',
         svc3_title: 'CDD / KYC-compliance', svc3_body: 'Gestructureerd klantonderzoeksprogramma — van initiële onboarding tot periodieke hertoetsing en doorlopende monitoring. Opgebouwd conform WWFT en EU-AML-richtlijnen, met volledige AVG-dataverwerkingsprotocollen. Verdedigbare documentatie bij elke processtap — ontworpen voor interne audit, externe toezichthouders en DNB/AFM-beoordeling.',
         svc1_link: 'Meer over acceptatie →', svc2_link: 'Meer over debiteurenbeheer →', svc3_link: 'Meer over CDD/KYC →',
+        svc4_title: 'AI-automatisering', svc4_body: 'Wij automatiseren de operationele workflows achter acceptatie, CDD/KYC en debiteurenbeheer — met AI voor documentextractie, screening, reconciliatie en dossierroutering. Gebouwd op onze vakinhoudelijke kennis, met menselijke controle en een volledig audittrail op elk beheerspunt.', svc4_link: 'Bespreek AI-automatisering →',
+        tag4_1: 'Documentextractie', tag4_2: 'Geautomatiseerde screening', tag4_3: 'Reconciliatie', tag4_4: 'Workflow-agents', tag4_5: 'Human-in-the-loop',
         exp_eyebrow: 'Onze ervaring', exp_h2: 'Organisaties waar wij actief zijn geweest',
         exp_intro: 'Ons team heeft geopereerd bij de meest complexe financiële instellingen van Europa — in automotive finance, leasing, verzekeringen en fintech. Wij kennen deze omgevingen van binnenuit.',
         sol1_title: 'Volledige functie-eigenaarschap. Finaxis voert het uit.',
