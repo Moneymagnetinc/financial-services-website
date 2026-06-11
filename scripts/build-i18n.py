@@ -517,9 +517,9 @@ def main() -> None:
     (DIST / 'en' / 'index.html').write_text(en_html, encoding='utf-8')
     print(f'  dist/en/index.html    {len(en_html):,} chars')
 
-    # Sitemap
-    (DIST / 'sitemap.xml').write_text(build_sitemap(), encoding='utf-8')
-    print(f'  dist/sitemap.xml')
+    # Sitemap is owned by build-pages.py (it knows every page). Writing it here
+    # would clobber the full sitemap with a 2-URL one. Always run build-pages.py
+    # after this script so dist/sitemap.xml contains all pages.
 
     # IndexNow key file
     (DIST / f'{INDEXNOW_KEY}.txt').write_text(INDEXNOW_KEY, encoding='utf-8')

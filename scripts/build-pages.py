@@ -276,6 +276,7 @@ def build_sitemap(article_slugs: list) -> str:
         ('/acceptatie/',       '0.9'),
         ('/debiteurenbeheer/', '0.9'),
         ('/cdd-kyc/',          '0.9'),
+        ('/ai-automatisering/', '0.9'),
         ('/freelance/',        '0.8'),
         ('/over-ons/',         '0.6'),
         ('/kennisbank/',       '0.7'),
@@ -293,13 +294,25 @@ def build_sitemap(article_slugs: list) -> str:
     ]
 
     def url_block(path, priority):
+        # The homepage NL/EN pair carries the full regional hreflang set so search
+        # engines serve the English page to US/UAE visitors. NL subpages are nl-only.
+        if path in ('/', '/en/'):
+            alts = '''
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://finaxis.nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-NL"     href="https://finaxis.nl/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://finaxis.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-US"     href="https://finaxis.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-AE"     href="https://finaxis.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/"/>'''
+        else:
+            alts = f'''
+    <xhtml:link rel="alternate" hreflang="nl" href="https://finaxis.nl{path}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/"/>'''
         return f'''  <url>
     <loc>https://finaxis.nl{path}</loc>
     <lastmod>{TODAY}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>{priority}</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://finaxis.nl{path}"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/"/>
+    <priority>{priority}</priority>{alts}
   </url>'''
 
     blocks = []
@@ -362,6 +375,13 @@ PILLAR_PAGES = [
         'service_name': 'Freelance acceptant & KYC specialist',
         'service_type': 'Freelance financial operations specialist',
         'service_desc': 'Freelance acceptant, KYC specialist of AR-professional inhuren. Ervaren ZZP-specialisten met institutionele achtergrond, binnen 5 werkdagen inzetbaar.',
+    },
+    {
+        'src':          'ai-automatisering.html',
+        'out':          'ai-automatisering/index.html',
+        'service_name': 'AI-automatisering voor financiële operaties',
+        'service_type': 'AI process automation',
+        'service_desc': 'AI-automatisering van acceptatie-, CDD/KYC- en debiteurenworkflows — documentextractie, screening en reconciliatie met menselijke controle en een volledig audittrail.',
     },
 ]
 
@@ -438,6 +458,7 @@ def main() -> None:
             [f'https://finaxis.nl/acceptatie/',
              'https://finaxis.nl/debiteurenbeheer/',
              'https://finaxis.nl/cdd-kyc/',
+             'https://finaxis.nl/ai-automatisering/',
              'https://finaxis.nl/freelance/',
              'https://finaxis.nl/over-ons/',
              'https://finaxis.nl/kennisbank/',
