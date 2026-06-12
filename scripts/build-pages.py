@@ -354,6 +354,7 @@ def build_sitemap(article_slugs: list) -> str:
         ('/en/cdd-kyc/',       '0.8'),
         ('/en/ai-automation/', '0.8'),
         ('/us/cdd-kyc/',       '0.8'),
+        ('/ae/cdd-kyc/',       '0.8'),
         ('/freelance/',        '0.8'),
         ('/over-ons/',         '0.6'),
         ('/kennisbank/',       '0.7'),
@@ -373,7 +374,7 @@ def build_sitemap(article_slugs: list) -> str:
     # Per-path hreflang, sourced from the page definitions so the sitemap and the
     # pages never disagree.
     alt_by_path = {}
-    for p in PILLAR_PAGES + EN_PAGES + US_PAGES:
+    for p in PILLAR_PAGES + EN_PAGES + REGIONAL_PAGES:
         if p.get('alternates'):
             alt_by_path['/' + p['out'].replace('index.html', '')] = p['alternates']
 
@@ -442,6 +443,7 @@ CDD_ALTS = {
     'nl':        'https://finaxis.nl/cdd-kyc/',
     'en':        'https://finaxis.nl/en/cdd-kyc/',
     'en-US':     'https://finaxis.nl/us/cdd-kyc/',
+    'en-AE':     'https://finaxis.nl/ae/cdd-kyc/',
     'x-default': 'https://finaxis.nl/cdd-kyc/',
 }
 
@@ -527,8 +529,8 @@ EN_PAGES = [
     },
 ]
 
-# US-targeted English pages (US-AML language: BSA/FinCEN/OFAC/CIP). English chrome.
-US_PAGES = [
+# Region-targeted English pages (local AML language). English chrome.
+REGIONAL_PAGES = [
     {
         'src':          'us/cdd-kyc.html',
         'out':          'us/cdd-kyc/index.html',
@@ -536,6 +538,15 @@ US_PAGES = [
         'service_type': 'BSA/AML and KYC compliance outsourcing',
         'service_desc': 'Audit-ready BSA/AML and KYC operations — CIP, FinCEN CDD Rule beneficial ownership, OFAC screening and EDD — built to US regulatory expectations.',
         'area':         'United States',
+        'alternates':   CDD_ALTS,
+    },
+    {
+        'src':          'ae/cdd-kyc.html',
+        'out':          'ae/cdd-kyc/index.html',
+        'service_name': 'Outsource AML and KYC compliance (UAE)',
+        'service_type': 'AML and KYC compliance outsourcing',
+        'service_desc': 'Audit-ready AML and KYC operations — CDD, UBO, sanctions screening and EDD — aligned to CBUAE, DFSA and ADGM expectations and goAML reporting.',
+        'area':         'United Arab Emirates',
         'alternates':   CDD_ALTS,
     },
 ]
@@ -593,7 +604,7 @@ def main() -> None:
 
     # US-targeted English pages
     print('\nUS pages:')
-    for p in US_PAGES:
+    for p in REGIONAL_PAGES:
         src_path = SRC / 'pages' / p['src']
         if not src_path.exists():
             print(f'  SKIP (missing): {p["src"]}')
@@ -654,6 +665,7 @@ def main() -> None:
              'https://finaxis.nl/en/cdd-kyc/',
              'https://finaxis.nl/en/ai-automation/',
              'https://finaxis.nl/us/cdd-kyc/',
+             'https://finaxis.nl/ae/cdd-kyc/',
              'https://finaxis.nl/freelance/',
              'https://finaxis.nl/over-ons/',
              'https://finaxis.nl/kennisbank/',
