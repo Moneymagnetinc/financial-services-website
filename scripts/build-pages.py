@@ -194,8 +194,11 @@ CHROME_EN = [
     ('Specialist nodig? Binnen 5 werkdagen inzetbaar —', 'Need a specialist? Operational within 5 business days —'),
     ('Plan een kennismaking &rarr;', 'Schedule an intro &rarr;'),
     ('aria-label="Sluiten"', 'aria-label="Close"'),
-    # the AI nav/footer links should point to the English AI page
+    # service links should point to their English equivalents (nav, footer + body)
     ('href="/ai-automatisering/"', 'href="/en/ai-automation/"'),
+    ('href="/acceptatie/"', 'href="/en/underwriting/"'),
+    ('href="/debiteurenbeheer/"', 'href="/en/accounts-receivable/"'),
+    ('href="/cdd-kyc/"', 'href="/en/cdd-kyc/"'),
 ]
 
 
@@ -340,12 +343,28 @@ def render_article(article: dict, all_articles: list, out_path: Path) -> None:
     print(f'  {out_path.relative_to(ROOT)}  ({len(page):,} chars)')
 
 
+# NL ↔ EN service-page pairs for reciprocal sitemap hreflang.
+SERVICE_PAIRS = {
+    '/acceptatie/':              ('/acceptatie/', '/en/underwriting/'),
+    '/en/underwriting/':         ('/acceptatie/', '/en/underwriting/'),
+    '/debiteurenbeheer/':        ('/debiteurenbeheer/', '/en/accounts-receivable/'),
+    '/en/accounts-receivable/':  ('/debiteurenbeheer/', '/en/accounts-receivable/'),
+    '/cdd-kyc/':                 ('/cdd-kyc/', '/en/cdd-kyc/'),
+    '/en/cdd-kyc/':              ('/cdd-kyc/', '/en/cdd-kyc/'),
+    '/ai-automatisering/':       ('/ai-automatisering/', '/en/ai-automation/'),
+    '/en/ai-automation/':        ('/ai-automatisering/', '/en/ai-automation/'),
+}
+
+
 def build_sitemap(article_slugs: list) -> str:
     pillar_pages = [
         ('/acceptatie/',       '0.9'),
         ('/debiteurenbeheer/', '0.9'),
         ('/cdd-kyc/',          '0.9'),
         ('/ai-automatisering/', '0.9'),
+        ('/en/underwriting/',  '0.8'),
+        ('/en/accounts-receivable/', '0.8'),
+        ('/en/cdd-kyc/',       '0.8'),
         ('/en/ai-automation/', '0.8'),
         ('/freelance/',        '0.8'),
         ('/over-ons/',         '0.6'),
@@ -374,11 +393,12 @@ def build_sitemap(article_slugs: list) -> str:
     <xhtml:link rel="alternate" hreflang="en-US"     href="https://finaxis.nl/en/"/>
     <xhtml:link rel="alternate" hreflang="en-AE"     href="https://finaxis.nl/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/"/>'''
-        elif path in ('/ai-automatisering/', '/en/ai-automation/'):
-            alts = '''
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://finaxis.nl/ai-automatisering/"/>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://finaxis.nl/en/ai-automation/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/ai-automatisering/"/>'''
+        elif path in SERVICE_PAIRS:
+            nl_url, en_url = SERVICE_PAIRS[path]
+            alts = f'''
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://finaxis.nl{nl_url}"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://finaxis.nl{en_url}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl{nl_url}"/>'''
         else:
             alts = f'''
     <xhtml:link rel="alternate" hreflang="nl" href="https://finaxis.nl{path}"/>
@@ -429,6 +449,7 @@ PILLAR_PAGES = [
         'service_name': 'Acceptatie uitbesteden',
         'service_type': 'Underwriting outsourcing',
         'service_desc': 'Volledige acceptatieverwerking — kredietanalyse, risicobeoor­deling en portfoliobeheer — binnen 5 werkdagen operationeel vanuit Nederland.',
+        'alternates':   {'nl': 'https://finaxis.nl/acceptatie/', 'en': 'https://finaxis.nl/en/underwriting/', 'x-default': 'https://finaxis.nl/acceptatie/'},
     },
     {
         'src':          'debiteurenbeheer.html',
@@ -436,6 +457,7 @@ PILLAR_PAGES = [
         'service_name': 'Debiteurenbeheer uitbesteden',
         'service_type': 'Accounts receivable management',
         'service_desc': 'End-to-end debiteurenadministratie — van facturering tot incasso. Bewezen DSO-verlaging van 30–40% binnen 90 dagen bij financiële instellingen in Nederland.',
+        'alternates':   {'nl': 'https://finaxis.nl/debiteurenbeheer/', 'en': 'https://finaxis.nl/en/accounts-receivable/', 'x-default': 'https://finaxis.nl/debiteurenbeheer/'},
     },
     {
         'src':          'cdd-kyc.html',
@@ -443,6 +465,7 @@ PILLAR_PAGES = [
         'service_name': 'CDD / KYC Compliance uitbesteden',
         'service_type': 'CDD/KYC compliance outsourcing',
         'service_desc': 'WWFT-conforme CDD en KYC — van KYC-onboarding tot EDD en PEP-screening. Auditgereed klantonderzoek conform DNB- en EU-AML-vereisten.',
+        'alternates':   {'nl': 'https://finaxis.nl/cdd-kyc/', 'en': 'https://finaxis.nl/en/cdd-kyc/', 'x-default': 'https://finaxis.nl/cdd-kyc/'},
     },
     {
         'src':          'freelance.html',
@@ -473,11 +496,31 @@ EN_PAGES = [
         'service_name': 'AI automation for financial operations',
         'service_type': 'AI process automation',
         'service_desc': 'AI automation of underwriting, CDD/KYC and receivables workflows — document extraction, screening and reconciliation with human review and a full audit trail.',
-        'alternates':   {
-            'nl':        'https://finaxis.nl/ai-automatisering/',
-            'en':        'https://finaxis.nl/en/ai-automation/',
-            'x-default': 'https://finaxis.nl/ai-automatisering/',
-        },
+        'alternates':   {'nl': 'https://finaxis.nl/ai-automatisering/', 'en': 'https://finaxis.nl/en/ai-automation/', 'x-default': 'https://finaxis.nl/ai-automatisering/'},
+    },
+    {
+        'src':          'en/underwriting.html',
+        'out':          'en/underwriting/index.html',
+        'service_name': 'Outsource underwriting',
+        'service_type': 'Underwriting outsourcing',
+        'service_desc': 'Full-cycle underwriting — credit analysis, risk assessment and portfolio management — operational within 5 business days from the Netherlands.',
+        'alternates':   {'nl': 'https://finaxis.nl/acceptatie/', 'en': 'https://finaxis.nl/en/underwriting/', 'x-default': 'https://finaxis.nl/acceptatie/'},
+    },
+    {
+        'src':          'en/accounts-receivable.html',
+        'out':          'en/accounts-receivable/index.html',
+        'service_name': 'Outsource accounts receivable',
+        'service_type': 'Accounts receivable management',
+        'service_desc': 'End-to-end receivables management — from invoicing to collections. Proven DSO reduction of 30–40% within 90 days at financial institutions.',
+        'alternates':   {'nl': 'https://finaxis.nl/debiteurenbeheer/', 'en': 'https://finaxis.nl/en/accounts-receivable/', 'x-default': 'https://finaxis.nl/debiteurenbeheer/'},
+    },
+    {
+        'src':          'en/cdd-kyc.html',
+        'out':          'en/cdd-kyc/index.html',
+        'service_name': 'Outsource CDD / KYC compliance',
+        'service_type': 'CDD/KYC compliance outsourcing',
+        'service_desc': 'AML-compliant CDD and KYC — from KYC onboarding to EDD and PEP screening. Audit-ready customer due diligence to EU AML standards.',
+        'alternates':   {'nl': 'https://finaxis.nl/cdd-kyc/', 'en': 'https://finaxis.nl/en/cdd-kyc/', 'x-default': 'https://finaxis.nl/cdd-kyc/'},
     },
 ]
 
@@ -573,6 +616,9 @@ def main() -> None:
              'https://finaxis.nl/debiteurenbeheer/',
              'https://finaxis.nl/cdd-kyc/',
              'https://finaxis.nl/ai-automatisering/',
+             'https://finaxis.nl/en/underwriting/',
+             'https://finaxis.nl/en/accounts-receivable/',
+             'https://finaxis.nl/en/cdd-kyc/',
              'https://finaxis.nl/en/ai-automation/',
              'https://finaxis.nl/freelance/',
              'https://finaxis.nl/over-ons/',
