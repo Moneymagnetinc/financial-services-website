@@ -1,0 +1,35 @@
+Campaign,Ad Group,Keyword,Match Type,Max CPC
+NL - Core,Debiteurenbeheer,debiteurenbeheer uitbesteden,Phrase,5
+NL - Core,Debiteurenbeheer,debiteurenbeheer uitbesteden,Exact,6
+NL - Core,Debiteurenbeheer,debiteurenadministratie uitbesteden,Phrase,5
+NL - Core,Debiteurenbeheer,dso verlagen,Phrase,4
+NL - Core,Debiteurenbeheer,accounts receivable uitbesteden,Phrase,5
+NL - Core,Debiteurenbeheer,incasso uitbesteden b2b,Phrase,5
+NL - Core,Acceptatie,acceptatie uitbesteden,Phrase,5
+NL - Core,Acceptatie,kredietacceptatie uitbesteden,Phrase,5
+NL - Core,Acceptatie,underwriting uitbesteden,Phrase,5
+NL - Core,Acceptatie,acceptant inhuren,Phrase,4
+NL - Core,Acceptatie,freelance acceptant,Phrase,4
+NL - Core,CDD-KYC,kyc uitbesteden,Phrase,6
+NL - Core,CDD-KYC,cdd uitbesteden,Phrase,6
+NL - Core,CDD-KYC,wwft specialist,Phrase,6
+NL - Core,CDD-KYC,kyc specialist inhuren,Phrase,6
+NL - Core,CDD-KYC,klantonderzoek uitbesteden,Phrase,5
+NL - Core,CDD-KYC,aml compliance uitbesteden,Phrase,6
+NL - Core,Freelance,freelance kyc analist,Phrase,4
+NL - Core,Freelance,interim compliance specialist,Phrase,5
+NL - Core,Freelance,zzp acceptant,Phrase,4
+NL - Core,Freelance,freelance debiteurenbeheer,Phrase,4
+US - BSA AML KYC,KYC Outsourcing,outsource kyc,Phrase,12
+US - BSA AML KYC,KYC Outsourcing,bsa aml outsourcing,Phrase,12
+US - BSA AML KYC,KYC Outsourcing,kyc outsourcing company,Phrase,12
+US - BSA AML KYC,KYC Outsourcing,cdd outsourcing,Phrase,11
+US - BSA AML KYC,KYC Outsourcing,kyc remediation services,Phrase,12
+US - BSA AML KYC,KYC Outsourcing,ofac screening service,Phrase,11
+US - BSA AML KYC,KYC Outsourcing,edd outsourcing,Phrase,10
+UAE - AML KYC,KYC Outsourcing,kyc outsourcing uae,Phrase,9
+UAE - AML KYC,KYC Outsourcing,aml compliance dubai,Phrase,9
+UAE - AML KYC,KYC Outsourcing,cdd outsourcing uae,Phrase,9
+UAE - AML KYC,KYC Outsourcing,goaml reporting support,Phrase,8
+UAE - AML KYC,KYC Outsourcing,kyc services dubai,Phrase,9
+UAE - AML KYC,KYC Outsourcing,ubo verification uae,Phrase,8

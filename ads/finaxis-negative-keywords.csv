@@ -1,0 +1,28 @@
+Campaign,Keyword,Match Type
+NL - Core,jobs,Broad
+NL - Core,vacature,Broad
+NL - Core,salaris,Broad
+NL - Core,opleiding,Broad
+NL - Core,cursus,Broad
+NL - Core,betekenis,Broad
+NL - Core,wat is,Phrase
+NL - Core,template,Broad
+NL - Core,gratis,Broad
+NL - Core,software,Broad
+NL - Core,stage,Broad
+NL - Core,zelf doen,Phrase
+NL - Core,voorbeeld,Broad
+NL - Core,wikipedia,Broad
+US - BSA AML KYC,jobs,Broad
+US - BSA AML KYC,salary,Broad
+US - BSA AML KYC,course,Broad
+US - BSA AML KYC,certification,Broad
+US - BSA AML KYC,software,Broad
+US - BSA AML KYC,free,Broad
+US - BSA AML KYC,what is,Phrase
+US - BSA AML KYC,template,Broad
+UAE - AML KYC,jobs,Broad
+UAE - AML KYC,salary,Broad
+UAE - AML KYC,course,Broad
+UAE - AML KYC,software,Broad
+UAE - AML KYC,free,Broad
