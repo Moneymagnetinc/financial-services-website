@@ -262,22 +262,22 @@ def build_jsonld(lang: str, faqs: list) -> str:
                 'name': 'Finaxis',
                 'parentOrganization': {'@id': 'https://finaxis.nl/#org'},
                 'description': (
-                    'Specialistteam voor acceptatie, debiteurenadministratie en '
-                    'CDD/KYC-compliance. EU-breed inzetbaar vanuit Nederland.'
+                    'Specialistteam voor acceptatie, AI-automatisering, CDD/KYC-compliance '
+                    'en debiteurenadministratie. EU-breed inzetbaar vanuit Amsterdam.'
                     if nl else
-                    'Specialist financial operations team for underwriting, accounts '
-                    'receivable, and CDD/KYC compliance. Netherlands-based, EU-deployed.'
+                    'Specialist financial operations team for underwriting, AI automation, '
+                    'CDD/KYC compliance, and accounts receivable. Amsterdam-based, EU-deployed.'
                 ),
                 'serviceType': [
                     'Underwriting outsourcing',
-                    'Accounts receivable management',
+                    'AI process automation',
                     'CDD/KYC compliance',
-                    'AI process automation'
+                    'Accounts receivable management'
                 ],
                 'knowsAbout': [
-                    'Underwriting', 'Accounts Receivable', 'CDD', 'KYC',
-                    'AML', 'WWFT', 'GDPR', 'DNB', 'Financial operations',
-                    'AI automation', 'Process automation', 'Artificial intelligence'
+                    'Underwriting', 'AI automation', 'Process automation',
+                    'Artificial intelligence', 'CDD', 'KYC', 'AML', 'WWFT',
+                    'Accounts Receivable', 'GDPR', 'DNB', 'Financial operations'
                 ],
                 'hasOfferCatalog': {
                     '@type': 'OfferCatalog',
@@ -286,11 +286,11 @@ def build_jsonld(lang: str, faqs: list) -> str:
                         {'@type': 'Offer', 'itemOffered': {'@type': 'Service',
                          'name': 'Acceptatie' if nl else 'Underwriting'}},
                         {'@type': 'Offer', 'itemOffered': {'@type': 'Service',
-                         'name': 'Debiteurenbeheer' if nl else 'Accounts Receivable'}},
+                         'name': 'AI-automatisering' if nl else 'AI Automation'}},
                         {'@type': 'Offer', 'itemOffered': {'@type': 'Service',
                          'name': 'CDD/KYC Compliance'}},
                         {'@type': 'Offer', 'itemOffered': {'@type': 'Service',
-                         'name': 'AI-automatisering' if nl else 'AI Automation'}}
+                         'name': 'Debiteurenbeheer' if nl else 'Accounts Receivable'}}
                     ]
                 }
             },
@@ -354,8 +354,8 @@ def build_head(lang: str) -> str:
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{"Finaxis | Acceptatie, Debiteurenbeheer &amp; CDD/KYC outsourcing | Amsterdam" if nl else "Finaxis | Outsourced Underwriting, Accounts Receivable &amp; CDD/KYC | Amsterdam"}</title>
-  <meta name="description" content="{"Specialistteam voor acceptatie, debiteurenbeheer en CDD/KYC. Bewezen trackrecord bij Stellantis, Generali en Ayvens. Operationeel binnen 5 werkdagen." if nl else "Specialist financial operations for underwriting, AR and CDD/KYC. Proven track record with Stellantis, Generali and Ayvens. Amsterdam-based; serving clients across the EU, United States and UAE."}" />
+  <title>{"Finaxis | Acceptatie, AI-automatisering &amp; CDD/KYC outsourcing | Amsterdam" if nl else "Finaxis | Underwriting, AI Automation &amp; CDD/KYC outsourcing | Amsterdam"}</title>
+  <meta name="description" content="{"Specialistteam voor acceptatie, AI-automatisering, CDD/KYC en debiteurenbeheer. Bewezen trackrecord bij Stellantis, Generali en Ayvens. Operationeel binnen 5 werkdagen." if nl else "Specialist financial operations for underwriting, AI automation, CDD/KYC and accounts receivable. Proven track record with Stellantis, Generali and Ayvens. Amsterdam-based; EU, US and UAE."}" />
   <meta name="keywords" content="{"acceptatie outsourcing Nederland, debiteurenbeheer specialist, CDD KYC compliance outsourcing, financiële operaties outsourcing, AML compliance specialist, freelance underwriter Nederland, KYC onboarding specialist" if nl else "underwriting outsourcing Netherlands, accounts receivable specialist, CDD KYC compliance outsourcing, financial operations outsourcing, AML compliance specialist, freelance underwriter Netherlands"}" />
   <meta name="author" content="Finaxis" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
