@@ -220,6 +220,36 @@ def inject_hreflang(html: str, alternates: dict) -> str:
         '<meta name="theme-color" content="#0A2456" />\n' + links, 1)
 
 
+REGION_LABELS = {
+    'nl': 'Netherlands', 'en': 'International (EN)',
+    'en-US': 'United States', 'en-AE': 'United Arab Emirates',
+}
+
+
+def build_region_bar(alternates: dict, canonical: str) -> str:
+    """Slim selector linking the regional versions of a page. Only shown for
+    clusters that actually have a US or UAE variant."""
+    if not alternates or not ({'en-US', 'en-AE'} & set(alternates)):
+        return ''
+    items = []
+    for lang, url in alternates.items():
+        if lang == 'x-default':
+            continue
+        label = REGION_LABELS.get(lang, lang)
+        if url.rstrip('/') == canonical.rstrip('/'):
+            items.append(f'<strong style="color:#0A2456;">{label}</strong>')
+        else:
+            items.append(f'<a href="{url}" style="color:#1B4FD8;">{label}</a>')
+    return (
+        '<div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;'
+        'padding:0.55rem 6%;font-family:\'Inter\',sans-serif;font-size:0.78rem;'
+        'color:#64748B;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">'
+        '<span style="font-weight:600;letter-spacing:0.04em;text-transform:uppercase;'
+        'font-size:0.68rem;color:#64748B;">Region</span>'
+        + ' &middot; '.join(items) + '</div>'
+    )
+
+
 def render_page(fragment_path: Path, out_path: Path,
                 service_name: str = '', service_type: str = '',
                 service_desc: str = '',
@@ -266,6 +296,11 @@ def render_page(fragment_path: Path, out_path: Path,
     combined = {"@context": "https://schema.org", "@graph": graph_nodes}
     jsonld_block = f'<script type="application/ld+json">\n{json.dumps(combined, ensure_ascii=False, indent=2)}\n</script>'
 
+    region_bar = build_region_bar(alternates, canonical)
+    if region_bar:
+        # Place the selector just below the hero (the top of content flow sits
+        # behind the fixed navbar, so prepending would hide it).
+        content = content.replace('</section>', '</section>\n' + region_bar, 1)
     page = PAGE_TPL.replace('{{HEAD}}', head) \
                    .replace('{{CONTENT}}', content) \
                    .replace('{{JSONLD}}', jsonld_block)
