@@ -343,19 +343,6 @@ def render_article(article: dict, all_articles: list, out_path: Path) -> None:
     print(f'  {out_path.relative_to(ROOT)}  ({len(page):,} chars)')
 
 
-# NL ↔ EN service-page pairs for reciprocal sitemap hreflang.
-SERVICE_PAIRS = {
-    '/acceptatie/':              ('/acceptatie/', '/en/underwriting/'),
-    '/en/underwriting/':         ('/acceptatie/', '/en/underwriting/'),
-    '/debiteurenbeheer/':        ('/debiteurenbeheer/', '/en/accounts-receivable/'),
-    '/en/accounts-receivable/':  ('/debiteurenbeheer/', '/en/accounts-receivable/'),
-    '/cdd-kyc/':                 ('/cdd-kyc/', '/en/cdd-kyc/'),
-    '/en/cdd-kyc/':              ('/cdd-kyc/', '/en/cdd-kyc/'),
-    '/ai-automatisering/':       ('/ai-automatisering/', '/en/ai-automation/'),
-    '/en/ai-automation/':        ('/ai-automatisering/', '/en/ai-automation/'),
-}
-
-
 def build_sitemap(article_slugs: list) -> str:
     pillar_pages = [
         ('/acceptatie/',       '0.9'),
@@ -366,6 +353,7 @@ def build_sitemap(article_slugs: list) -> str:
         ('/en/accounts-receivable/', '0.8'),
         ('/en/cdd-kyc/',       '0.8'),
         ('/en/ai-automation/', '0.8'),
+        ('/us/cdd-kyc/',       '0.8'),
         ('/freelance/',        '0.8'),
         ('/over-ons/',         '0.6'),
         ('/kennisbank/',       '0.7'),
@@ -382,6 +370,13 @@ def build_sitemap(article_slugs: list) -> str:
         ('/en/', '0.9'),
     ]
 
+    # Per-path hreflang, sourced from the page definitions so the sitemap and the
+    # pages never disagree.
+    alt_by_path = {}
+    for p in PILLAR_PAGES + EN_PAGES + US_PAGES:
+        if p.get('alternates'):
+            alt_by_path['/' + p['out'].replace('index.html', '')] = p['alternates']
+
     def url_block(path, priority):
         # The homepage NL/EN pair carries the full regional hreflang set so search
         # engines serve the English page to US/UAE visitors. NL subpages are nl-only.
@@ -393,12 +388,11 @@ def build_sitemap(article_slugs: list) -> str:
     <xhtml:link rel="alternate" hreflang="en-US"     href="https://finaxis.nl/en/"/>
     <xhtml:link rel="alternate" hreflang="en-AE"     href="https://finaxis.nl/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/"/>'''
-        elif path in SERVICE_PAIRS:
-            nl_url, en_url = SERVICE_PAIRS[path]
-            alts = f'''
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://finaxis.nl{nl_url}"/>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://finaxis.nl{en_url}"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl{nl_url}"/>'''
+        elif path in alt_by_path:
+            alts = ''.join(
+                f'\n    <xhtml:link rel="alternate" hreflang="{lang}" href="{url}"/>'
+                for lang, url in alt_by_path[path].items()
+            )
         else:
             alts = f'''
     <xhtml:link rel="alternate" hreflang="nl" href="https://finaxis.nl{path}"/>
@@ -442,6 +436,15 @@ def ping_indexnow(urls: list) -> None:
 
 # ── Page definitions ──────────────────────────────────────────────────────────
 
+# CDD/KYC cluster: NL + generic EN + US-targeted EN. Shared so all three pages
+# (and the sitemap) advertise the same reciprocal hreflang set.
+CDD_ALTS = {
+    'nl':        'https://finaxis.nl/cdd-kyc/',
+    'en':        'https://finaxis.nl/en/cdd-kyc/',
+    'en-US':     'https://finaxis.nl/us/cdd-kyc/',
+    'x-default': 'https://finaxis.nl/cdd-kyc/',
+}
+
 PILLAR_PAGES = [
     {
         'src':          'acceptatie.html',
@@ -465,7 +468,7 @@ PILLAR_PAGES = [
         'service_name': 'CDD / KYC Compliance uitbesteden',
         'service_type': 'CDD/KYC compliance outsourcing',
         'service_desc': 'WWFT-conforme CDD en KYC — van KYC-onboarding tot EDD en PEP-screening. Auditgereed klantonderzoek conform DNB- en EU-AML-vereisten.',
-        'alternates':   {'nl': 'https://finaxis.nl/cdd-kyc/', 'en': 'https://finaxis.nl/en/cdd-kyc/', 'x-default': 'https://finaxis.nl/cdd-kyc/'},
+        'alternates':   CDD_ALTS,
     },
     {
         'src':          'freelance.html',
@@ -520,7 +523,20 @@ EN_PAGES = [
         'service_name': 'Outsource CDD / KYC compliance',
         'service_type': 'CDD/KYC compliance outsourcing',
         'service_desc': 'AML-compliant CDD and KYC — from KYC onboarding to EDD and PEP screening. Audit-ready customer due diligence to EU AML standards.',
-        'alternates':   {'nl': 'https://finaxis.nl/cdd-kyc/', 'en': 'https://finaxis.nl/en/cdd-kyc/', 'x-default': 'https://finaxis.nl/cdd-kyc/'},
+        'alternates':   CDD_ALTS,
+    },
+]
+
+# US-targeted English pages (US-AML language: BSA/FinCEN/OFAC/CIP). English chrome.
+US_PAGES = [
+    {
+        'src':          'us/cdd-kyc.html',
+        'out':          'us/cdd-kyc/index.html',
+        'service_name': 'Outsource BSA/AML and KYC compliance',
+        'service_type': 'BSA/AML and KYC compliance outsourcing',
+        'service_desc': 'Audit-ready BSA/AML and KYC operations — CIP, FinCEN CDD Rule beneficial ownership, OFAC screening and EDD — built to US regulatory expectations.',
+        'area':         'United States',
+        'alternates':   CDD_ALTS,
     },
 ]
 
@@ -561,6 +577,23 @@ def main() -> None:
     # English pages
     print('\nEnglish pages:')
     for p in EN_PAGES:
+        src_path = SRC / 'pages' / p['src']
+        if not src_path.exists():
+            print(f'  SKIP (missing): {p["src"]}')
+            continue
+        render_page(
+            src_path,
+            DIST / p['out'],
+            p['service_name'],
+            p['service_type'],
+            p['service_desc'],
+            lang='en',
+            alternates=p.get('alternates'),
+        )
+
+    # US-targeted English pages
+    print('\nUS pages:')
+    for p in US_PAGES:
         src_path = SRC / 'pages' / p['src']
         if not src_path.exists():
             print(f'  SKIP (missing): {p["src"]}')
@@ -620,6 +653,7 @@ def main() -> None:
              'https://finaxis.nl/en/accounts-receivable/',
              'https://finaxis.nl/en/cdd-kyc/',
              'https://finaxis.nl/en/ai-automation/',
+             'https://finaxis.nl/us/cdd-kyc/',
              'https://finaxis.nl/freelance/',
              'https://finaxis.nl/over-ons/',
              'https://finaxis.nl/kennisbank/',
