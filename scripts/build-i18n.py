@@ -514,6 +514,8 @@ def main() -> None:
 
     # Build EN
     en_html = build_page('en', template, en_block, faqs_en)
+    # On the EN homepage, the AI service card should point to the English AI page.
+    en_html = en_html.replace('href="/ai-automatisering/"', 'href="/en/ai-automation/"')
     (DIST / 'en' / 'index.html').write_text(en_html, encoding='utf-8')
     print(f'  dist/en/index.html    {len(en_html):,} chars')
 

@@ -154,9 +154,73 @@ def extract_faqs_from_fragment(html: str) -> list:
     return faqs
 
 
+# ── i18n chrome (for the few English subpages) ─────────────────────────────────
+
+# Dutch → English replacements for the shared nav/footer/popup chrome in page.html.
+# Order matters; all strings are exact matches present in the rendered page.
+CHROME_EN = [
+    ('<html lang="nl">', '<html lang="en">'),
+    ('content="nl_NL"', 'content="en_GB"'),
+    ('finaxis-share-nl.png', 'finaxis-share-en.png'),
+    # top nav + footer service labels
+    ('>Acceptatie</a>', '>Underwriting</a>'),
+    ('>Debiteurenbeheer</a>', '>Accounts Receivable</a>'),
+    ('>AI-automatisering</a>', '>AI Automation</a>'),
+    ('>Kennisbank</a>', '>Knowledge Base</a>'),
+    ('>Gesprek aanvragen</a>', '>Request a call</a>'),
+    ('>CDD / KYC Compliance</a>', '>CDD / KYC Compliance</a>'),
+    ('>Freelance / ZZP inhuren</a>', '>Freelance / Contract hire</a>'),
+    ('>Over ons</a>', '>About us</a>'),
+    ('>Uitbesteden vs. In-house</a>', '>Outsourcing vs. In-house</a>'),
+    ('>WWFT Checklist (gratis)</a>', '>WWFT Checklist (free)</a>'),
+    # footer headings + taglines
+    ('>Diensten<', '>Services<'),
+    ('>Navigatie<', '>Navigation<'),
+    ('Specialist in acceptatie, debiteurenbeheer en CDD/KYC-compliance. Gevestigd in Nederland.',
+     'Specialist in underwriting, accounts receivable and CDD/KYC compliance. Based in Amsterdam, the Netherlands.'),
+    ('>Nederland &middot; Wereldwijd<', '>Netherlands &middot; Worldwide<'),
+    ('Nederland &middot; Alle rechten voorbehouden.', 'Netherlands &middot; All rights reserved.'),
+    ('>Acceptatie &middot; Debiteurenbeheer &middot; CDD/KYC<',
+     '>Underwriting &middot; Accounts Receivable &middot; CDD/KYC<'),
+    # exit popup + whatsapp
+    ('Voordat je gaat — download de gratis WWFT Checklist 2026',
+     'Before you go — download the free WWFT Checklist 2026'),
+    ('17 controlepunten voor KYC, AML en CDD — direct te gebruiken in jouw organisatie.',
+     '17 checkpoints for KYC, AML and CDD — ready to use in your organisation.'),
+    ('Direct downloaden &rarr;', 'Download now &rarr;'),
+    ('aria-label="Download gratis checklist"', 'aria-label="Download free checklist"'),
+    ('<span>Direct chatten</span>', '<span>Chat now</span>'),
+    # sticky CTA bar + misc labels
+    ('Specialist nodig? Binnen 5 werkdagen inzetbaar —', 'Need a specialist? Operational within 5 business days —'),
+    ('Plan een kennismaking &rarr;', 'Schedule an intro &rarr;'),
+    ('aria-label="Sluiten"', 'aria-label="Close"'),
+    # the AI nav/footer links should point to the English AI page
+    ('href="/ai-automatisering/"', 'href="/en/ai-automation/"'),
+]
+
+
+def to_english_chrome(html: str) -> str:
+    for nl, en in CHROME_EN:
+        html = html.replace(nl, en)
+    return html
+
+
+def inject_hreflang(html: str, alternates: dict) -> str:
+    """Replace the template's static homepage hreflang links with a page-specific set."""
+    html = re.sub(r'[ \t]*<link rel="alternate"[^>]*>\n', '', html)
+    links = '\n'.join(
+        f'  <link rel="alternate" hreflang="{lang}" href="{url}" />'
+        for lang, url in alternates.items()
+    )
+    return html.replace(
+        '<meta name="theme-color" content="#0A2456" />',
+        '<meta name="theme-color" content="#0A2456" />\n' + links, 1)
+
+
 def render_page(fragment_path: Path, out_path: Path,
                 service_name: str = '', service_type: str = '',
-                service_desc: str = '') -> None:
+                service_desc: str = '',
+                lang: str = 'nl', alternates: dict = None) -> None:
     fragment = fragment_path.read_text(encoding='utf-8')
     meta     = parse_meta_comment(fragment)
     canonical = meta.get('canonical', 'https://finaxis.nl/')
@@ -202,6 +266,11 @@ def render_page(fragment_path: Path, out_path: Path,
     page = PAGE_TPL.replace('{{HEAD}}', head) \
                    .replace('{{CONTENT}}', content) \
                    .replace('{{JSONLD}}', jsonld_block)
+
+    if alternates:
+        page = inject_hreflang(page, alternates)
+    if lang == 'en':
+        page = to_english_chrome(page)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(page, encoding='utf-8')
@@ -277,6 +346,7 @@ def build_sitemap(article_slugs: list) -> str:
         ('/debiteurenbeheer/', '0.9'),
         ('/cdd-kyc/',          '0.9'),
         ('/ai-automatisering/', '0.9'),
+        ('/en/ai-automation/', '0.8'),
         ('/freelance/',        '0.8'),
         ('/over-ons/',         '0.6'),
         ('/kennisbank/',       '0.7'),
@@ -304,6 +374,11 @@ def build_sitemap(article_slugs: list) -> str:
     <xhtml:link rel="alternate" hreflang="en-US"     href="https://finaxis.nl/en/"/>
     <xhtml:link rel="alternate" hreflang="en-AE"     href="https://finaxis.nl/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/"/>'''
+        elif path in ('/ai-automatisering/', '/en/ai-automation/'):
+            alts = '''
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://finaxis.nl/ai-automatisering/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://finaxis.nl/en/ai-automation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://finaxis.nl/ai-automatisering/"/>'''
         else:
             alts = f'''
     <xhtml:link rel="alternate" hreflang="nl" href="https://finaxis.nl{path}"/>
@@ -382,6 +457,27 @@ PILLAR_PAGES = [
         'service_name': 'AI-automatisering voor financiële operaties',
         'service_type': 'AI process automation',
         'service_desc': 'AI-automatisering van acceptatie-, CDD/KYC- en debiteurenworkflows — documentextractie, screening en reconciliatie met menselijke controle en een volledig audittrail.',
+        'alternates':   {
+            'nl':        'https://finaxis.nl/ai-automatisering/',
+            'en':        'https://finaxis.nl/en/ai-automation/',
+            'x-default': 'https://finaxis.nl/ai-automatisering/',
+        },
+    },
+]
+
+# English subpages (English chrome + body). Each carries reciprocal hreflang.
+EN_PAGES = [
+    {
+        'src':          'en/ai-automation.html',
+        'out':          'en/ai-automation/index.html',
+        'service_name': 'AI automation for financial operations',
+        'service_type': 'AI process automation',
+        'service_desc': 'AI automation of underwriting, CDD/KYC and receivables workflows — document extraction, screening and reconciliation with human review and a full audit trail.',
+        'alternates':   {
+            'nl':        'https://finaxis.nl/ai-automatisering/',
+            'en':        'https://finaxis.nl/en/ai-automation/',
+            'x-default': 'https://finaxis.nl/ai-automatisering/',
+        },
     },
 ]
 
@@ -416,6 +512,24 @@ def main() -> None:
             p['service_name'],
             p['service_type'],
             p['service_desc'],
+            alternates=p.get('alternates'),
+        )
+
+    # English pages
+    print('\nEnglish pages:')
+    for p in EN_PAGES:
+        src_path = SRC / 'pages' / p['src']
+        if not src_path.exists():
+            print(f'  SKIP (missing): {p["src"]}')
+            continue
+        render_page(
+            src_path,
+            DIST / p['out'],
+            p['service_name'],
+            p['service_type'],
+            p['service_desc'],
+            lang='en',
+            alternates=p.get('alternates'),
         )
 
     # Simple pages
@@ -459,6 +573,7 @@ def main() -> None:
              'https://finaxis.nl/debiteurenbeheer/',
              'https://finaxis.nl/cdd-kyc/',
              'https://finaxis.nl/ai-automatisering/',
+             'https://finaxis.nl/en/ai-automation/',
              'https://finaxis.nl/freelance/',
              'https://finaxis.nl/over-ons/',
              'https://finaxis.nl/kennisbank/',
